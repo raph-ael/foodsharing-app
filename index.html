@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" ng-app="Foodsharing">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Foodsharing</title>  
+  
+  <link rel="stylesheet" href="css/libs/font-awesome.min.css" />  
+  <link rel="stylesheet" href="css/fonts/alfaslabone/stylesheet.css" />  
+  <link rel="stylesheet" href="css/libs/pure.css" />
+  <link rel="stylesheet" href="css/libs/pure-theme.css" />
+  <link rel="stylesheet" href="css/app.css" />
+
+  <script src="cordova.js"></script>
+  <script src="js/libs/jquery.js"></script>  
+  <script src="js/storage.js"></script> 
+  <script src="js/config.js"></script> 
+  
+  <script src="js/msg.js"></script> 
+  <script src="js/image.js"></script> 
+  <script src="js/ajax.js"></script> 
+  <script src="js/user.js"></script> 
+  <script src="js/page.js"></script> 
+  <script src="js/init.js"></script> 
+  <script src="js/basket.js"></script> 
+  
+  <script src="js/app.js"></script> 
+  
+</head>
+
+<body>    
+  
+  <!--
+  		Header Start
+  -->
+  <header class="header">
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading toplogo" href="#" onclick="return false;"><span class="beige">food</span><span class="green">sharing</span></a>
+
+        <div class="pure-menu-heading" style="float:right;max-width: 50%; overflow: hidden;">
+           <div id="mini-loader" class="bubblingG">
+				<span id="bubblingG_1">
+				</span>
+				<span id="bubblingG_2">
+				</span>
+				<span id="bubblingG_3">
+				</span>
+			</div>&nbsp; <span id="title">&nbsp;</span>
+        </div>
+    </div>
+  </header>
+  <!--
+  	Header Ende
+  -->
+  
+  
+  
+  <!--
+  		Seite Essenskorb einstellen STart
+  -->
+  <div style="display:block;" id="page-foodbasket" class="page">
+  	<form class="pure-form pure-form-stacked">
+	    <fieldset>
+	        <legend>Essenskorb einstellen</legend>
+			
+			<p id="cam-wrapper" style="text-align:center;">
+				<button id="cambutton" class="corner button-xlarge pure-button button-green"><i class="fa fa-camera fa-2x"></i></button>
+			</p>
+			
+			<div id="image-preview" class="corner" style="display:none;max-height: 80px;overflow:hidden;">
+				<img width="100%" style="display:none;" id="largeImage" src="" />
+			</div>
+  			
+			
+			<p>
+	    	    <textarea class="corner fill" id="description" placeholder="Beschreibung"></textarea>
+			</p>
+	        
+	        <p>
+	        	<label for="weight">geschätztes Gewicht</label>
+	        	<select id="weight" name="weight" class="fill">
+					<option value="">Bitte Auswählen...</option>
+						<option value="0.25">250 g</option>
+						<option value="0.5">500 g</option>
+						<option value="0.75">750 g</option>
+						<option value="1">1,00 kg</option>
+						<option value="2">2,00 kg</option>
+						<option selected="selected" value="3">3,00 kg</option>
+						<option value="4">4,00 kg</option>
+						<option value="5">5,00 kg</option>
+						<option value="6">6,00 kg</option>
+						<option value="7">7,00 kg</option>
+						<option value="8">8,00 kg</option>
+						<option value="9">9,00 kg</option>
+						<option value="10">10,00 kg</option>
+						<option value="20">20,00 kg</option>
+						<option value="30">30,00 kg</option>
+						<option value="40">40,00 kg</option>
+						<option value="50">50,00 kg</option>
+						<option value="60">60,00 kg</option>
+						<option value="70">70,00 kg</option>
+						<option value="80">80,00 kg</option>
+						<option value="90">90,00 kg</option>
+						<option value="100">100,00 kg</option>
+				</select>
+	        	
+	        </p>
+	        
+	        <div class="corner cbmenu pure-menu pure-menu-open">				
+			    <ul>
+					<li class="pure-menu-heading">Kontaktaufnahme</li>
+					
+					<li><a href="#"><label><input type="checkbox" value="1" name="contact_type[]" class="input cb-contact_type">&nbsp;per Nachricht</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="2" name="contact_type[]" class="phone-check input cb-contact_type">&nbsp;per Telefon-Anruf</label></a></li>
+				</ul>
+			</div>
+			
+			<p id="phone-wrapper" style="display:none;">
+		       <input class="fill" id="phone" type="text" placeholder="Festnetz-Telefon">
+		       <input class="fill" id="phone_mobile" type="text" placeholder="Handynummer">
+		    </p>
+			
+			<div class="corner cbmenu pure-menu pure-menu-open">
+				<ul>
+					<li class="pure-menu-heading">Art der Lebensmittel</li>
+					
+					<li><a href="#"><label><input type="checkbox" value="1" name="food_type[]" class="input cb-food_type">&nbsp;Backwaren</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="2" name="food_type[]" class="input cb-food_type">&nbsp;Obst &amp; Gemüse</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="3" name="food_type[]" class="input cb-food_type">&nbsp;Molkereiprodukte</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="4" name="food_type[]" class="input cb-food_type">&nbsp;Trockenware</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="5" name="food_type[]" class="input cb-food_type">&nbsp;Tiefkühlware</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="6" name="food_type[]" class="input cb-food_type">&nbsp;Zubreitetete Speisen</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="7" name="food_type[]" class="input cb-food_type">&nbsp;Tierfutter</label></a></li>
+	
+			
+					<li class="pure-menu-heading">Was trifft zu?</li>
+					
+					<li><a href="#"><label><input type="checkbox" value="1" name="food_art[]" class="input cb-food_art">&nbsp;sind Bio</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="2" name="food_art[]" class="input cb-food_art">&nbsp;sind vegetarisch</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="3" name="food_art[]" class="input cb-food_art">&nbsp;sind vegan</label></a></li>
+					<li><a href="#"><label><input type="checkbox" value="4" name="food_art[]" class="input cb-food_art">&nbsp;sind glutenfrei</label></a></li>
+	
+					<li class="geoview pure-menu-heading">Abholort</li>
+					
+					<li class="geoview"><a href="#">
+						<label class="pure-radio" for="checkbox-radio-option-three"><input class="cb-fetch-point" checked="checked" type="radio" value="home" name="location">&nbsp;Bei mir zu hause</label>
+					</a></li>
+					
+					<li class="geoview"><a href="#">
+						<label class="pure-radio" for="checkbox-radio-option-three"><input class="cb-fetch-point" type="radio" value="loc" name="location">&nbsp;Aktueller Standort</label>
+					</a></li>
+				
+				
+				
+				
+				</ul>
+			</div>
+	        <input id="latitude" type="hidden" name="latitude" value="" />
+	        <input id="longitude" type="hidden" name="longitude" value="" />
+	        <input id="photo" type="hidden" name="photo" value="" />
+	        
+			<p>
+	        	<button style="font-weight:normal;padding:15px 0;" id="basketSubmit" class="fill corner pure-button pure-button-primary">Absenden</button>
+	        </p>
+	    </fieldset>
+	</form>
+  </div>
+  <!--
+  	Essenkorb einstellen Ende
+  -->
+  
+  
+  <!--
+  	Einstellungen Start
+  -->
+  <div id="page-settings" class="page">
+  	<form class="pure-form pure-form-stacked">
+	    <fieldset>
+	        <legend>Login - lebensmittelretten.de</legend>
+	
+			<p>
+		        <input class="fill" id="email" type="email" placeholder="Deine E-Mail Adresse" value="raphi@waldorfweb.net">
+		        <input class="fill" id="password" type="password" placeholder="Dein Password" value="h4nn3lor3">
+	 		</p>
+	 		<p>
+	       		<button id="savesettings" class="corner fill pure-button pure-button-primary">Speichern</button>
+	       	</p>
+	    </fieldset>
+	</form>
+  </div>
+  <!--
+  	Einstellungen Ende
+  -->
+  
+
+  <div id="loader"><span>&nbsp;</span></div>
+  
+  <!--
+  	Footer Start
+  -->
+  <footer>
+  	<div>
+  				<a style="float:left;width:50%;margin:0;padding:8px 0;" href="#foodbasket" class="page-foodbasket pure-button pure-button-active">
+				    <i class="fa fa-camera"></i><br />
+				    Essenskorb
+				</a>
+
+  		
+  				<a style="float:left;width:50%;margin:0;padding:0;padding:8px 0;" href="#settings" class="page-settings pure-button">
+				    <i class="fa fa-cog"></i><br />
+				    Einstellungen
+				</a>
+				<div style="clear:both;"></div>
+	</div>
+  </footer>
+  <!--
+  	Footer Ende
+  -->
+ 
+ 
+</body>
+</html>
