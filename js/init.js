@@ -27,6 +27,13 @@ var init = {
 	},
 	footer: function()
 	{
+		var footer = $('footer');
+		footer.animate({
+			'bottom':'-100px'
+		},200,function(){
+			footer.hide();
+		});
+		
 		$('footer a').click(function(ev){
 			ev.preventDefault();
 			index = this.href.split('#')[1];
@@ -43,6 +50,8 @@ var init = {
 	},
 	location: function()
 	{
+		$('.geoview').hide(); 
+		/*
 		navigator.geolocation.getCurrentPosition(
 			// success get geolocation
 			function(position){
@@ -66,7 +75,31 @@ var init = {
 	            {timeout:30});                       	
 	        }
 	    );
+	    */
 	
+	},
+	hardwareButtons: function(){
+		
+		document.addEventListener("menubutton", function(){
+			var footer = $('footer');
+			if(footer.is(':visible'))
+			{
+				footer.animate({
+					'bottom':'-100px'
+				},100,function(){
+					footer.hide();
+				});
+			}
+			else
+			{
+				footer.show();
+				footer.animate({
+					'bottom':'0px'
+				},100);
+			}
+			
+			
+		}, false);
 	},
 	login_data: function()
 	{

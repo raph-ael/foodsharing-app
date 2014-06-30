@@ -4,18 +4,21 @@ init.location_counter = 0;
 lang['foodbasket'] = 'Essenskorb';
 lang['settings'] = 'Einstellungen';
 
+document.addEventListener('deviceready',function(){
+	if(init.location_counter <= 10)
+    {
+		init.location();
+	}
+	init.hardwareButtons();
+},false);
+
 $(document).ready(function(){
 	
 	init.footer();
 	init.checkboxes();
 	init.cambutton();
 	
-	document.addEventListener('deviceready',function(){
-		if(init.location_counter <= 10)
-        {
-			init.location();
-		}
-	},false);
+	
 
 	init.checkLogin();
 	init.login_data();

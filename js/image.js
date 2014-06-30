@@ -113,11 +113,11 @@
 		}
 		else
 		{
-			msg.error("Das Foto konnte leider nicht hochgeladen werden." );
+			msg.error("Das Foto konnte leider nicht hochgeladen werden, Bitter überprüfe Deine Internet-Verbindung!" );
 		}
 	}
 	function fail(error) 
 	{
 		loader.miniHide();
-		msg.error("Das Foto konnte leider nicht hochgeladen werden." );
+		msg.error("Das Foto konnte leider nicht hochgeladen werden, Bitter überprüfe Deine Internet-Verbindung!" );
 	}  

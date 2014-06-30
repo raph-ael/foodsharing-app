@@ -16,6 +16,7 @@ var basket = {
 		$('#description').val('');
 		window.scrollTo(0, 0);
 	},
+	tryCount: 0,
 	submit: function(){
 		
 		if(this.validate())
@@ -35,6 +36,7 @@ var basket = {
 				contact_type[contact_type.length] = $(this).val();
 			});
 			
+			loader.show();
 			a.req('basket_submit',{
 				data: {
 					desc: $('#description').val(),
@@ -50,11 +52,29 @@ var basket = {
 					weight: $('#weight').val()
 				},
 				success: function(){
+					loader.hide();
+					this.tryCount = 0;
 					basket.clearForm();
 					msg.success('Korb wurde erfolgreich eingestellt!');
 				},
 				error: function(){
-					msg.error('Es ist ein Fehler aufgetreten, versuche es gleich nochmal!');
+					this.tryCount++;
+					loader.hide();
+					if(this.tryCount > 3)
+					{
+						msg.error('Der Korb konnte noch nicht hochgeladen werden, überprüfe Deine Internet-Verbindung und versuche es später noch einmal.');
+						this.tryCount = 0;
+					}
+					else
+					{
+						setTimeout(function(){
+							u.login({
+								success:function(){
+									basket.submit();
+								}
+							});
+						},2000);
+					}
 				}
 			});
 		}
