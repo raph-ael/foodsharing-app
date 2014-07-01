@@ -45,6 +45,12 @@ var u = {
 					store.set('fs-gender',json.gender);
 					store.set('fs-name',json.name);
 					
+					store.set('fs-lat',json.lat);
+					store.set('fs-lon',json.lon);
+					
+					c.lat = json.lat;
+					c.lon = json.lon;
+
 					/*
 					$('#phone').val(json.phone);
 					$('#phone_mobile').val(json.phone_mobile);

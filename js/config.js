@@ -3,7 +3,7 @@ var c = {
 	//domain: 'lmr.local',
 	backpage: 'map',
 	currentpage: 'map',
-	lat:50.943740,
-	lon:6.920743,
+	lat:null,
+	lon:null,
 	zoom:13
 };
