@@ -106,6 +106,10 @@ var init = {
 		}
 		else
 		{
+			if(init.footerTimeout !== null)
+			{
+				clearTimeout(init.footerTimeout);
+			}
 			init.fButtonsShow();
 				
 			init.footerTimeout = setTimeout(function(){
@@ -116,7 +120,7 @@ var init = {
 	hardwareButtons: function(){
 
 		document.addEventListener("backbutton", function(){
-			init.fButtonsHide();
+
 			t.goBack();
 			
 		}, false);

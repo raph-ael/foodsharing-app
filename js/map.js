@@ -22,11 +22,9 @@ var map = {
 		
 		if(this.map == null)
 		{
-			this.map = L.map('page-map',{
-				zoomControl: false
-			}).setView([lat, lon], zoom);
+			this.map = L.map('page-map').setView([lat, lon], zoom);
 			
-			new L.Control.Zoom({ position: 'bottomleft' }).addTo(this.map);
+			//new L.Control.Zoom({ position: 'bottomleft' }).addTo(this.map);
 			
 			L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 				attribution: 'Tiles &copy; Esri 2014'
