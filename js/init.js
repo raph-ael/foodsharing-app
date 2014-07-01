@@ -116,14 +116,9 @@ var init = {
 	hardwareButtons: function(){
 
 		document.addEventListener("backbutton", function(){
-			if($('footer').is(':visible'))
-			{
-				init.fButtonsHide();
-			}
-			else
-			{
-				t.goBack();
-			}
+			init.fButtonsHide();
+			t.goBack();
+			
 		}, false);
 		
 		document.addEventListener("menubutton", function(){
