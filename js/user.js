@@ -68,7 +68,7 @@ var u = {
 					//$('#title').text(json.name);
 					
 					this.loginTryCount = 0;
-					page.activate('map');
+					page.activate('foodbasket');
 					
 					if(option.success != undefined)
 					{

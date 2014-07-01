@@ -50,7 +50,7 @@ body
 .page
 {
 	display:none;
-	padding:40px 2% 100px 2%;
+	padding:50px 2% 100px 2%;
 }
 #page-map
 {
@@ -90,26 +90,22 @@ header .pure-menu-heading span
 {
 	color:#FFFFFF;
 }
-footer
+#menu
 {
 	position:fixed;
-    left:0px;
-    bottom:0px;
     width:100%;
     z-index: 1100;
+    top:42px;
+    height:132px
 }
-footer div
-{
-	
-}
-footer .pure-button
+#menu .pure-button
 {
 	color:#665343;
 	background-color: #A9A59C;
 	box-shadow: 0;
 }
 
-footer .pure-button-active,footer, footer .pure-button-active:active
+#menu .pure-button-active,#menu, #menu .pure-button-active:active
 {
 	color:#4A911D;
 	background-color: #F5F1E8;

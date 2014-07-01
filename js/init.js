@@ -28,14 +28,14 @@ var init = {
 	footerTimeout : null,
 	footer: function()
 	{
-		var footer = $('footer');
+		var footer = $('#menu');
 		footer.animate({
 			'bottom':'-100px'
 		},200,function(){
 			footer.hide();
 		});
 		
-		$('footer a.pagelink').click(function(ev){
+		$('#menu a.pagelink').click(function(ev){
 			ev.preventDefault();
 			index = this.href.split('#')[1];
 			page.activate(index);
@@ -80,23 +80,23 @@ var init = {
 	
 	},
 	fButtonsHide: function(){
-		var footer = $('footer');
+		var footer = $('#menu');
 		footer.animate({
-			'bottom':'-100px'
+			'top':'-300px'
 		},100,function(){
 			footer.hide();
 		});
 	},
 	fButtonsShow: function(){
-		var footer = $('footer');
+		var footer = $('#menu');
 		footer.show();
 		footer.animate({
-			'bottom':'0px'
+			'top':'42px'
 		},100);
 	},
 	menuClick: function()
 	{
-		if($('footer').is(':visible'))
+		if($('#menu').is(':visible'))
 		{
 			if(init.footerTimeout !== null)
 			{

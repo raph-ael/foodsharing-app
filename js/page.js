@@ -27,11 +27,11 @@ var page = {
 	},
 	setFootMenu: function(index){	
 		
-		$('footer a').removeClass('pure-button-active');
-		$('footer a.page-' + index).addClass('pure-button-active');
+		$('#menu a').removeClass('pure-button-active');
+		$('#menu a.page-' + index).addClass('pure-button-active');
 	},
 	setTitle: function(text)
 	{
-		$('#title').text(text);
+		//$('#title').text(text);
 	}
 };
