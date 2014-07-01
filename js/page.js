@@ -22,6 +22,7 @@ var page = {
 		
 		c.backpage = c.currentpage;
 		c.currentpage = name;
+		init.fButtonsHide();
 		
 	},
 	setFootMenu: function(index){	
