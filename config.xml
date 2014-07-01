@@ -4,8 +4,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "de.lebensmittelretten.app"
-        versionCode ="10002" 
-        version   = "1.0.2">
+        versionCode ="10003" 
+        version   = "1.0.3">
 
     <name>foodsharing lebensmittelretten</name>
     <description>
