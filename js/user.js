@@ -27,6 +27,9 @@ var u = {
 			store.del('lmr-email');
 			store.del('lmr-pass');
 			store.del('lmr-token');
+			
+			loader.show();
+			
 			a.req('login',{
 				data:{
 					e:$('#email').val(),
@@ -65,6 +68,9 @@ var u = {
 					{
 						option.success();
 					}
+					
+					loader.hide();
+					
 				},
 				error: function(){
 					this.loginTryCount++;

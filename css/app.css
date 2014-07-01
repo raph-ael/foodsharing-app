@@ -96,7 +96,7 @@ footer
     left:0px;
     bottom:0px;
     width:100%;
-    z-index: 100;
+    z-index: 1100;
 }
 footer div
 {
@@ -166,7 +166,11 @@ input{
 	color:#F5F1E8 !important;
 }
 
-
+* {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+    outline: none !important;
+} 
 /*
  * Loader
  */
@@ -304,6 +308,4 @@ transform: translateY(-10px);
 }
 
 }
-*:focus{
-	outline: 0;
-}
+

@@ -22,7 +22,9 @@ $(document).ready(function(){
 	init.checkboxes();
 	init.cambutton();
 	
-	
+	$('#title-wrapper').click(function(){
+		init.menuClick();
+	});
 
 	init.checkLogin();
 	init.login_data();
@@ -36,6 +38,15 @@ $(document).ready(function(){
 		basket.submit();
 	});
 	loader.miniHide();
+	
+	// map bugfix while resizing
+	$(window).resize(function(){
+		if(map.map !== null)
+		{
+			map.map.invalidateSize(false);
+		}
+	});
+	
 });
 
 function loginDataSaved()

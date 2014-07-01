@@ -140,12 +140,17 @@ var basket = {
 						navigator.notification.prompt('Schreibe ' + data.basket.fs_name + ' eine kurze Nachricht zu Deiner Anfrage', function(ret){
 							if(ret.buttonIndex == 1)
 							{
+								loader.show();
 								a.req('sendreqmessage',{
 									data:{
 										id: data.basket.id,
 										msg: ret.input1
 									},
-									app: 'basket'
+									app: 'basket',
+									success: function(){
+										loader.hide();
+										t.goBack();
+									}
 								});
 							}
 						}, 'Essenskorb anfragen', ['Anfrage absenden','Abbrechen'], '');

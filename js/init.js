@@ -94,32 +94,40 @@ var init = {
 			'bottom':'0px'
 		},100);
 	},
+	menuClick: function()
+	{
+		if($('footer').is(':visible'))
+		{
+			if(init.footerTimeout !== null)
+			{
+				clearTimeout(init.footerTimeout);
+			}
+			init.fButtonsHide();
+		}
+		else
+		{
+			init.fButtonsShow();
+				
+			init.footerTimeout = setTimeout(function(){
+				init.fButtonsHide();
+			},5000);
+		}
+	},
 	hardwareButtons: function(){
-		
+
 		document.addEventListener("backbutton", function(){
-			t.goBack();
-		}, false);
-		
-		document.addEventListener("menubutton", function(){
-			
 			if($('footer').is(':visible'))
 			{
-				if(init.footerTimeout !== null)
-				{
-					clearTimeout(init.footerTimeout);
-				}
 				init.fButtonsHide();
 			}
 			else
 			{
-				init.fButtonsShow();
-				
-				init.footerTimeout = setTimeout(function(){
-					init.fButtonsHide();
-				},5000);
+				t.goBack();
 			}
-			
-			
+		}, false);
+		
+		document.addEventListener("menubutton", function(){
+			init.menuClick();
 		}, false);
 	},
 	login_data: function()

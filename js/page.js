@@ -13,7 +13,11 @@ var page = {
 		
 		if(name == 'map')
 		{
-			map.init(50.943740, 6.920743,13);
+			if(map.map !== null)
+			{
+				map.map.invalidateSize(false);
+			}
+			map.init(c.lat, c.lon, c.zoom);
 		}
 		
 		c.backpage = c.currentpage;
