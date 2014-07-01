@@ -100,12 +100,62 @@ var basket = {
 				{
 					$('#page-basket .picture').css('display','none');
 				}
-				$('#page-basket button.request').unbind('click');
-				$('#page-basket button.request').click(function(){
-					navigator.notification.prompt('Schreibe ' + data.basket.fs_name + ' eine kurze Nachricht zu Deiner Anfrage', function(clicked){
-						alert(clicked);
-					}, 'Essenskorb anfragen', ['Anfrage senden','Abbrechen'], '');
-				});
+				
+				/*
+				 * Anfrage Buttons
+				 */
+				contact_type = new Array(1);
+				
+				if(data.basket.contact_type != '')
+				{
+					contact_type = data.basket.contact_type.split(':');
+				}
+				
+				// möchte angerufen werden
+				if(t.in_array(2,contact_type))
+				{
+					number = data.basket.handy;
+					if(number == '')
+					{
+						number = data.basket.tel;
+					}
+					button = $('#request-phone a:first');
+					button.attr('href','tel:' + number);
+					button.text(number + ' anrufen');
+				}
+				else
+				{
+					$('#request-phone').hide();
+				}
+				
+				// möchte per nachricht angefragt werden
+				if(t.in_array(1,contact_type))
+				{
+					$('#request-msg').show();
+					// request buttons cleanen
+					$('#request-msg button').unbind('click');
+					
+					$('#request-msg button').click(function(){
+
+						navigator.notification.prompt('Schreibe ' + data.basket.fs_name + ' eine kurze Nachricht zu Deiner Anfrage', function(ret){
+							if(ret.buttonIndex == 1)
+							{
+								a.req('sendreqmessage',{
+									data:{
+										id: data.basket.id,
+										msg: ret.input1
+									},
+									app: 'basket'
+								});
+							}
+						}, 'Essenskorb anfragen', ['Anfrage absenden','Abbrechen'], '');
+						
+					});
+				}
+				else
+				{
+					$('#request-msg').hide();
+				}
 			}
 		});
 	}

@@ -24,7 +24,9 @@
   <script src="js/config.js"></script> 
   
   <script src="js/msg.js"></script> 
+  <script src="js/lmrwrapper.js"></script> 
   <script src="js/map.js"></script> 
+  <script src="js/tools.js"></script> 
   <script src="js/image.js"></script> 
   <script src="js/ajax.js"></script> 
   <script src="js/user.js"></script> 
@@ -83,8 +85,12 @@
   	</div>
   	<aside></aside>
   	
-  	<p>
-	     <button style="font-weight:normal;padding:15px 0;" class="request fill corner pure-button pure-button-primary">Essenkorb anfragen</button>
+  	<p id="request-phone">
+	     <a href="#" style="font-weight:normal;padding:15px 0;" class="fill corner pure-button pure-button-primary">anrufen</a>
+    </p>
+  	
+  	<p id="request-msg">
+	     <button style="font-weight:normal;padding:15px 0;" class="fill corner pure-button pure-button-primary">Essenkorb anfragen</button>
     </p>
   </div>
   
@@ -149,8 +155,8 @@
 			</div>
 			
 			<p id="phone-wrapper" style="display:none;">
-		       <input class="fill" id="phone" type="text" placeholder="Festnetz-Telefon">
-		       <input class="fill" id="phone_mobile" type="text" placeholder="Handynummer">
+		       <input class="fill" id="phone" type="text" placeholder="Telefon-Nummer">
+		       <input style="display: none;" class="fill" id="phone_mobile" type="text" placeholder="Telefon-Nummer">
 		    </p>
 			
 			<div class="corner cbmenu pure-menu pure-menu-open">

@@ -1,14 +1,21 @@
 var msg = {
 	info: function(msg)
 	{
-		alert(msg);
+		navigator.notification.alert(msg, function(){
+			
+		}, 'Info!', 'OK');
 	},
 	error: function(msg)
 	{
-		alert(msg);
+		navigator.notification.alert(msg, function(){
+			
+		}, 'Fehler', 'Alles klar');
+;
 	},
 	success: function(msg)
 	{
-		alert(msg);
+		navigator.notification.alert(msg, function(){
+			
+		}, 'Prima!', 'OK');
 	}
 };

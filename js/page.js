@@ -16,6 +16,9 @@ var page = {
 			map.init(50.943740, 6.920743,13);
 		}
 		
+		c.backpage = c.currentpage;
+		c.currentpage = name;
+		
 	},
 	setFootMenu: function(index){	
 		

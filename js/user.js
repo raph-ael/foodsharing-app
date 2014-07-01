@@ -42,8 +42,19 @@ var u = {
 					store.set('fs-gender',json.gender);
 					store.set('fs-name',json.name);
 					
+					/*
 					$('#phone').val(json.phone);
 					$('#phone_mobile').val(json.phone_mobile);
+					*/
+					
+					if(json.phone_mobile != '')
+					{
+						$('#phone').val(json.phone_mobile);
+					}
+					else
+					{
+						$('#phone').val(json.phone);
+					}
 					
 					$('#title').text(json.name);
 					
@@ -57,10 +68,7 @@ var u = {
 				},
 				error: function(){
 					this.loginTryCount++;
-					if(option.error != undefined)
-					{
-						option.error();
-					}
+					msg.info('Du konntest Nicht angemeldet werden, bitte überprüfe Deine Zugangsdaten');
 				}
 			});
 		}

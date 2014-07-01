@@ -15,8 +15,13 @@ var a = {
 			option.data = new Array();
 		}
 		
+		if(option.app == undefined)
+		{
+			option.app = 'api';
+		}
+		
 		$.ajax({
-	        url: 'http://' + c.domain + '/freiwillige/xhrapp.php?app=api&m=' + method + '&callback=?',
+	        url: 'http://' + c.domain + '/freiwillige/xhrapp.php?app=' + option.app + '&m=' + method + '&format=jsonp&callback=?',
 	        dataType: 'jsonp',
 	       	type: 'get',
 	        data: option.data,
@@ -30,6 +35,11 @@ var a = {
 				else if(option.success != undefined && option.error != undefined)
 				{
 					option.error(json);
+				}
+
+				if(json.script != undefined)
+				{
+					$.globalEval(json.script);
 				}
 	
 	        },
