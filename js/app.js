@@ -18,6 +18,11 @@ document.addEventListener('deviceready',function(){
 
 $(document).ready(function(){
 	
+	var u_loader = $('#loader');
+	u_loader.fadeOut(1,function(){
+		u_loader.css('display','none');
+	});
+	
 	init.footer();
 	init.checkboxes();
 	init.cambutton();
@@ -28,10 +33,6 @@ $(document).ready(function(){
 
 	init.checkLogin();
 	init.login_data();
-	
-	setTimeout(function(){
-		loader.hide();
-	},500);
 	
 	$('#basketSubmit').click(function(ev){
 		ev.preventDefault();
