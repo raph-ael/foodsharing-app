@@ -88,6 +88,7 @@ var basket = {
 				id: id
 			},
 			success: function(data){
+				loader.hide();
 				page.activate('basket');
 				$('#page-basket h2:first').text('Essenskorb von ' + data.basket.fs_name);
 				$('#page-basket aside:first').text(data.basket.description);
