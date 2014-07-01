@@ -5,6 +5,10 @@ lang['foodbasket'] = 'Essenskorb';
 lang['settings'] = 'Einstellungen';
 
 document.addEventListener('deviceready',function(){
+    if(navigator.splashscreen)
+    {
+        navigator.splashscreen.hide();
+    }
 	if(init.location_counter <= 10)
     {
 		init.location();
