@@ -65,7 +65,7 @@ var u = {
 						$('#phone').val(json.phone);
 					}
 					
-					$('#title').text(json.name);
+					//$('#title').text(json.name);
 					
 					this.loginTryCount = 0;
 					page.activate('map');
