@@ -6,25 +6,25 @@ init.location_counter = 0;
 lang['foodbasket'] = 'Essenskorb';
 lang['settings'] = 'Einstellungen';
 
-$(document).ready(function(){
+document.addEventListener('deviceready',function(){
+		
+	// initialize Push Messaging
+		
+	if(navigator.splashscreen)
+    {
+        navigator.splashscreen.hide();
+    }
+		
+	push.init();
 	
-	document.addEventListener('deviceready',function(){
-		
-		// initialize Push Messaging
-		
-		if(navigator.splashscreen)
-	    {
-	        navigator.splashscreen.hide();
-	    }
-		
-		push.init();
-		
-		if(init.location_counter <= 10)
-	    {
-			init.location();
-		}
-		init.hardwareButtons();
-	},false);
+	if(init.location_counter <= 10)
+    {
+		init.location();
+	}
+	init.hardwareButtons();
+},false);
+
+$(document).ready(function(){
 	
 	var u_loader = $('#loader');
 	u_loader.fadeOut(1,function(){
