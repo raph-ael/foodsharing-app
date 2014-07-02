@@ -180,8 +180,12 @@ var basket = {
 					for(i=0;i<ret.requests.length;i++)
 					{
 						r = ret.requests[i];
-						$('#requestBody').append('<li class="fill"><a class="fill" href="http://lebensmittelretten.de/freiwillige/?page=message&conv=' + r.fs_id + '" target="_blank"><img class="corner" src="' + r.fs_photo + '" /></span><span class="pure-menu-heading">Anfrage von ' + r.fs_name + '</span><span class="time">' + r.time + '</span><span class="text">' + r.text + '</span><span class="clear"></span></a></li>');
+						$('#requestBody').append('<li class="fill"><a href="http://lebensmittelretten.de/freiwillige/?page=message&conv=' + r.fs_id + '" target="_blank"><img class="corner" src="' + r.fs_photo + '" /></span><span class="pure-menu-heading">Anfrage von ' + r.fs_name + '</span><span class="time">' + r.time + '</span><span class="text">' + r.text + '</span><span class="clear"></span></a></li>');
 					}
+				}
+				else
+				{
+					$('#requestBody').append('<li class="pure-menu-heading">Zur Zeit keine Anfragen..</li>');
 				}
 				
 			}

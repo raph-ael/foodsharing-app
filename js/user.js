@@ -79,7 +79,6 @@ var u = {
 					
 					this.loginTryCount = 0;
 					page.activate('foodbasket');
-					//basket.showRequests();
 					
 					if(option.success != undefined)
 					{
