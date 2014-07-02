@@ -99,7 +99,7 @@ function onNotificationGCM(e) {
         if ( e.foreground )
         {
             //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-			msg.info('Du hast eine Essenkorb anfrage erhalten!');
+			msg.info('Du hast eine Essenskorb Anfrage erhalten!');
 			basket.showRequests();
             // if the notification contains a soundname, play it.
            // var my_media = new Media("/android_asset/www/"+e.soundname);
