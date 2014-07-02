@@ -20,6 +20,7 @@ var a = {
 			option.app = 'api';
 		}
 		
+		loader.miniShow();
 		$.ajax({
 	        url: 'http://' + c.domain + '/freiwillige/xhrapp.php?app=' + option.app + '&m=' + method + '&format=jsonp&callback=?',
 	        dataType: 'jsonp',
@@ -45,6 +46,7 @@ var a = {
 	        },
 	        complete: function(){
 	        	loader.hide();
+	        	loader.miniHide();
 	        }
 	
 	});
@@ -101,25 +103,53 @@ var a = {
 };
 
 var loader = {
-	miniShow: function(){
-		$('#mini-loader').stop().fadeIn();
+	miniVisible:false,
+	visible:false,
+	miniShow: function()
+	{
+		if(!this.miniVisible)
+		{
+			this.miniVisible = true;
+			$('#mini-loader').stop().fadeIn();
+		}
+	},
+	pageHide: function(){
+		$('.pageloader').hide();
+		$('.pageContent').show();
+	},
+	pageShow: function(){
+		$('.pageloader').show();
+		$('.pageContent').hide();
 	},
 	miniHide: function(){
-		$('#mini-loader').stop().fadeOut();
+		if(this.miniVisible)
+		{
+			$('#mini-loader').stop().fadeOut();
+			this.miniVisible = false;
+		}
 	},
 	show: function(){
-		window.scrollTo(0, 0);
-		$('body').css('overflow','hidden');
-		var u_loader = $('#loader');
-		
-		u_loader.css('display','block');
-		u_loader.stop().fadeIn(10);
+		if(!this.visible)
+		{
+			window.scrollTo(0, 0);
+			$('body').css('overflow','hidden');
+			var u_loader = $('#loader');
+			
+			u_loader.css('display','block');
+			u_loader.stop().fadeIn(10);
+			
+			this.visible = true;
+		}
 	},
 	hide: function(){
-		$('body').css('overflow','auto');
-		var u_loader = $('#loader');
-		u_loader.stop().fadeOut(200,function(){
-			u_loader.css('display','none');
-		});
+		if(this.visible)
+		{
+			$('body').css('overflow','auto');
+			var u_loader = $('#loader');
+			u_loader.stop().fadeOut(200,function(){
+				u_loader.css('display','none');
+			});
+			this.visible = false;
+		}
 	}
 };

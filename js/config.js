@@ -5,5 +5,6 @@ var c = {
 	currentpage: 'map',
 	lat:null,
 	lon:null,
-	zoom:13
+	zoom:13,
+	pushgcm:0
 };

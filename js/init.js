@@ -142,6 +142,7 @@ var init = {
 				page.activate('settings');
 				return false;
 			}
+			
 			$('#email').val(email);
 			$('#password').val(pass);
 			

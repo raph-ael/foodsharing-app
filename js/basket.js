@@ -164,5 +164,27 @@ var basket = {
 				}
 			}
 		});
+	},
+	showRequests: function()
+	{
+		page.activate('requests');
+		
+		a.req('loadrequests',{
+			success: function(ret){
+				loader.pageHide();
+				
+				$('#requestBody').html('');
+				
+				if(ret.requests != undefined && ret.requests.length > 0)
+				{
+					for(i=0;i<ret.requests.length;i++)
+					{
+						r = ret.requests[i];
+						$('#requestBody').append('<li class="fill"><a class="fill" href="http://lebensmittelretten.de/freiwillige/?page=message&conv=' + r.fs_id + '" target="_blank"><img class="corner" src="' + r.fs_photo + '" /></span><span class="pure-menu-heading">Anfrage von ' + r.fs_name + '</span><span class="time">' + r.time + '</span><span class="text">' + r.text + '</span><span class="clear"></span></a></li>');
+					}
+				}
+				
+			}
+		});
 	}
 };

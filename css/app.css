@@ -90,6 +90,31 @@ header .pure-menu-heading span
 {
 	color:#FFFFFF;
 }
+.pure-menu img
+{
+	float:left;
+	margin-right:8px;
+}
+.pure-menu a .pure-menu-heading
+{
+	margin:0;
+	padding:0;
+}
+.pure-menu span
+{
+	
+}
+.pure-menu .time
+{
+	font-size:11px;
+	display:block;
+}
+.pure-menu .clear
+{
+	float:none;
+	display:block;
+	clear:both;
+}
 #menu
 {
 	position:fixed;

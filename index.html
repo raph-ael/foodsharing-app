@@ -16,10 +16,16 @@
   
   <script src="cordova.js"></script>
   
+  <!-- Plugins -->
+  <script type="text/javascript" src="plugins/PushNotification.js"></script>
   
+  <!-- libs -->
   <script src="js/libs/leaflet/leaflet.js"></script>
   <script src="js/libs/leaflet/markercluster/leaflet.markercluster.js"></script>
   <script src="js/libs/jquery.js"></script>  
+  
+  <!-- own scripts -->
+  <script src="js/push.js"></script> 
   <script src="js/storage.js"></script> 
   <script src="js/config.js"></script> 
   
@@ -243,10 +249,38 @@
   -->
   
   
+  
+  
+  <!--
+  	Essenskorb Anfragen
+  -->
+  <div id="page-requests" class="page">  	
+  	<form class="pageloader pure-form pure-form-stacked">
+	    <fieldset>
+	        <legend>Lade Anfragen...</legend>
+	    </fieldset>
+	</form>
+	<div class="pageContent">
+		<div class="pure-menu pure-menu-open pure-menu-horizontal">
+		    <a href="#" class="pure-menu-heading">Essenkorb anfragen</a>
+		    <ul class="fill" id="requestBody">
+		    
+		    </ul>
+	   </div>
+	</div>
+  </div>
+  
+  
+  
   <!--
   	Einstellungen Start
   -->
   <div id="page-settings" class="page">
+  	
+  	<ul id="app-status-ul">
+  		
+  	</ul>
+  	
   	<form class="pure-form pure-form-stacked">
 	    <fieldset>
 	        <legend>Login - lebensmittelretten.de</legend>

@@ -1,14 +1,22 @@
 var lang = new Array ();
+
+
 init.location_counter = 0;
 
 lang['foodbasket'] = 'Essenskorb';
 lang['settings'] = 'Einstellungen';
 
 document.addEventListener('deviceready',function(){
-    if(navigator.splashscreen)
+	
+	// initialize Push Messaging
+	
+	if(navigator.splashscreen)
     {
         navigator.splashscreen.hide();
     }
+	
+	push.init();
+	
 	if(init.location_counter <= 10)
     {
 		init.location();

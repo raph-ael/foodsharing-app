@@ -53,6 +53,9 @@
     <gap:plugin name="org.apache.cordova.file-transfer" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.geolocation" />
+    
+    <!-- other plugins -->
+    <gap:plugin name="com.adobe.plugins.pushplugin" />
 
     <!--
         <gap:plugin name="org.apache.cordova.battery-status" />

@@ -1,5 +1,6 @@
 var u = {
 	loginTryCount: 0,
+	loggedIn: false,
 	getToken: function(){
 		token = store.get('lmr-token');
 		if(token != null)
@@ -11,13 +12,20 @@ var u = {
 	checkLogin: function(){
 		a.req('checklogin');
 	},
+	setGCM: function(regid){
+		loader.miniShow();
+		a.req('setgcm',{
+			data:{
+				i:regid
+			}
+		});
+	},
 	login: function(option){
 		
 		if(option == undefined)
 		{
 			option = {};
 		}
-		
 		if(this.loginTryCount >= 5)
 		{
 			msg.error('Du konntest Nicht angemeldet werden, bitte überprüfe Deine Internet-Verbindung');
@@ -29,14 +37,16 @@ var u = {
 			store.del('lmr-token');
 			
 			loader.show();
-			
+	
 			a.req('login',{
 				data:{
 					e:$('#email').val(),
-					p:$('#password').val()
+					p:$('#password').val(),
+					g:c.pushgcm
 				},
 				success: function(json)
 				{
+					u.loggedIn = true;
 					store.set('lmr-email',json.e);
 					store.set('lmr-pass',json.p);
 					store.set('lmr-token',json.token);
@@ -69,6 +79,7 @@ var u = {
 					
 					this.loginTryCount = 0;
 					page.activate('foodbasket');
+					//basket.showRequests();
 					
 					if(option.success != undefined)
 					{
