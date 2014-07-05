@@ -44,6 +44,18 @@ $(document).ready(function(){
 		ev.preventDefault();
 		basket.submit();
 	});
+	
+	$('input.phone-check').parent().click(function(){
+		if($(this).children('input:checked').length > 0)
+		{
+			$('#phone-wrapper').show();
+		}
+		else
+		{
+			$('#phone-wrapper').hide();
+		}
+	});
+	
 	loader.miniHide();
 	
 	// map bugfix while resizing
