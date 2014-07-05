@@ -18,6 +18,9 @@ var basket = {
 	{
 		$('#image-preview').css('display','none');
 		$('#description').val('');
+		$('#page-foodbasket input[type=\'checkbox\']').each(function(){
+			this.checked = false;
+		});
 		window.scrollTo(0, 0);
 	},
 	tryCount: 0,
