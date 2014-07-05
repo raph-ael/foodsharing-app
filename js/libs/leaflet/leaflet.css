@@ -121,7 +121,18 @@
 	margin-right: 10px;
 	}
 
-
+.leaflet-control a i
+{
+	font-size: 30px;
+}
+.leaflet-control a
+{
+	line-height: 55px;
+}
+.leaflet-control a.leaflet-crosshairs
+{
+	line-height: 57px;
+}
 /* zoom and fade animations */
 
 .leaflet-fade-anim .leaflet-tile,
@@ -214,7 +225,6 @@
 	border-bottom: 1px solid #998676;
 	width: 46px;
 	height: 46px;
-	line-height: 46px;
 	display: block;
 	text-align: center;
 	text-decoration: none;
@@ -252,7 +262,7 @@
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
 	font: bold 18px 'Lucida Console', Monaco, monospace;
-	text-indent: 1px;
+	text-indent: 0px;
 	}
 .leaflet-control-zoom-out {
 	font-size: 20px;

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="js/libs/leaflet/leaflet.css" />
   <link rel="stylesheet" href="js/libs/leaflet/markercluster/MarkerCluster.css" />
   <link rel="stylesheet" href="js/libs/leaflet/markercluster/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="js/libs/leaflet/routing/leaflet-routing-machine.css" />
   
   <script src="cordova.js"></script>
   
@@ -22,6 +23,7 @@
   <!-- libs -->
   <script src="js/libs/leaflet/leaflet.js"></script>
   <script src="js/libs/leaflet/markercluster/leaflet.markercluster.js"></script>
+  <script src="js/libs/leaflet/routing/leaflet-routing-machine.js"></script>
   <script src="js/libs/jquery.js"></script>  
   
   <!-- own scripts -->
@@ -30,6 +32,7 @@
   <script src="js/config.js"></script> 
   
   <script src="js/msg.js"></script> 
+  <script src="js/position.js"></script> 
   <script src="js/lmrwrapper.js"></script> 
   <script src="js/map.js"></script> 
   <script src="js/tools.js"></script> 
@@ -69,6 +72,8 @@
         </div>
     </div>
   </header>
+  
+  <div class="statusbar">&nbsp;</div>
   <!--
   	Header Ende
   -->
@@ -76,7 +81,7 @@
   <!--
   	Footer Start
   -->
-  <div id="menu">
+  <div id="menu" class="invisible">
   	<div>
   				<a style="float:left;width:50%;margin:0;padding:8px 0;" href="#map" class="pagelink page-map pure-button pure-button-active">
 				    <i class="fa fa-map-marker"></i><br />
@@ -120,14 +125,18 @@
   	Essenskorb
   -->
   <div id="page-basket" class="page">
-  	<button onclick="page.activate('map');return false;" class="pure-button">Zurück</button>
-  	<h3></h3>
+  	<button onclick="page.activate('map');return false;" class="pure-button">
+  		<i class="fa fa-chevron-circle-left">&nbsp;</i>
+  		Zurück
+  	</button>
+  	<h3>&nbsp;</h3>
   	<div class="picture" style="display:none;">
   		<p style="text-align: center;">
   			<img class="corner" src="" />
   		</p>
   	</div>
-  	<aside></aside>
+  	
+  	<aside>&nbsp;</aside>
   	
   	<p id="request-phone">
 	     <a href="#" style="font-weight:normal;padding:15px 0;" class="fill corner pure-button pure-button-primary">anrufen</a>
@@ -135,6 +144,10 @@
   	
   	<p id="request-msg">
 	     <button style="font-weight:normal;padding:15px 0;" class="fill corner pure-button pure-button-primary">Essenkorb anfragen</button>
+    </p>
+    
+    <p id="route-btn">
+	     <button style="font-weight:normal;padding:15px 0;" class="fill corner pure-button pure-button-primary"><i class="fa fa-location-arrow">&nbsp;</i> Route berechnen (<span id="b-distance">&nbsp;</span>)</button>
     </p>
   </div>
   
@@ -193,8 +206,8 @@
 			    <ul>
 					<li class="pure-menu-heading">Kontaktaufnahme</li>
 					
-					<li><a href="#"><label><input type="checkbox" value="1" name="contact_type[]" class="input cb-contact_type">&nbsp;per Nachricht</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="2" name="contact_type[]" class="phone-check input cb-contact_type">&nbsp;per Telefon-Anruf</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="1" name="contact_type[]" class="input cb-contact_type">&nbsp;per Nachricht</label></li>
+					<li><label class="nosel"><input type="checkbox" value="2" name="contact_type[]" class="phone-check input cb-contact_type">&nbsp;per Telefon-Anruf</label></li>
 				</ul>
 			</div>
 			
@@ -207,31 +220,31 @@
 				<ul>
 					<li class="pure-menu-heading">Art der Lebensmittel</li>
 					
-					<li><a href="#"><label><input type="checkbox" value="1" name="food_type[]" class="input cb-food_type">&nbsp;Backwaren</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="2" name="food_type[]" class="input cb-food_type">&nbsp;Obst &amp; Gemüse</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="3" name="food_type[]" class="input cb-food_type">&nbsp;Molkereiprodukte</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="4" name="food_type[]" class="input cb-food_type">&nbsp;Trockenware</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="5" name="food_type[]" class="input cb-food_type">&nbsp;Tiefkühlware</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="6" name="food_type[]" class="input cb-food_type">&nbsp;Zubreitetete Speisen</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="7" name="food_type[]" class="input cb-food_type">&nbsp;Tierfutter</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="1" name="food_type[]" class="input cb-food_type">&nbsp;Backwaren</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="2" name="food_type[]" class="input cb-food_type">&nbsp;Obst &amp; Gemüse</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="3" name="food_type[]" class="input cb-food_type">&nbsp;Molkereiprodukte</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="4" name="food_type[]" class="input cb-food_type">&nbsp;Trockenware</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="5" name="food_type[]" class="input cb-food_type">&nbsp;Tiefkühlware</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="6" name="food_type[]" class="input cb-food_type">&nbsp;Zubreitetete Speisen</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="7" name="food_type[]" class="input cb-food_type">&nbsp;Tierfutter</label></a></li>
 	
 			
 					<li class="pure-menu-heading">Was trifft zu?</li>
 					
-					<li><a href="#"><label><input type="checkbox" value="1" name="food_art[]" class="input cb-food_art">&nbsp;sind Bio</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="2" name="food_art[]" class="input cb-food_art">&nbsp;sind vegetarisch</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="3" name="food_art[]" class="input cb-food_art">&nbsp;sind vegan</label></a></li>
-					<li><a href="#"><label><input type="checkbox" value="4" name="food_art[]" class="input cb-food_art">&nbsp;sind glutenfrei</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="1" name="food_art[]" class="input cb-food_art">&nbsp;sind Bio</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="2" name="food_art[]" class="input cb-food_art">&nbsp;sind vegetarisch</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="3" name="food_art[]" class="input cb-food_art">&nbsp;sind vegan</label></a></li>
+					<li><label class="nosel"><input type="checkbox" value="4" name="food_art[]" class="input cb-food_art">&nbsp;sind glutenfrei</label></a></li>
 	
-					<li style="display:none;" class="geoview pure-menu-heading">Abholort</li>
+					<li class="geoview pure-menu-heading">Abholort</li>
 					
-					<li style="display:none;" class="geoview"><a href="#">
-						<label class="pure-radio" for="checkbox-radio-option-three"><input class="cb-fetch-point" checked="checked" type="radio" value="home" name="location">&nbsp;Bei mir zu hause</label>
-					</a></li>
+					<li class="geoview">
+						<label onclick="basket.hideLocWait();" class="pure-radio nosel"><input class="cb-fetch-point" checked="checked" type="radio" value="home" name="location">&nbsp;Bei mir zu hause</label>
+					</li>
 					
-					<li style="display:none;" class="geoview"><a href="#">
-						<label class="pure-radio" for="checkbox-radio-option-three"><input class="cb-fetch-point" type="radio" value="loc" name="location">&nbsp;Aktueller Standort</label>
-					</a></li>				
+					<li class="geoview">
+						<label onclick="basket.getPosition();" class="pure-radio nosel"><input class="cb-fetch-point" type="radio" value="loc" name="location">&nbsp;Aktueller Standort</label>
+					</li>				
 				
 				</ul>
 			</div>
@@ -241,6 +254,7 @@
 	        
 			<p>
 	        	<button style="font-weight:normal;padding:15px 0;" id="basketSubmit" class="fill corner pure-button pure-button-primary">Absenden</button>
+	        	<button style="font-weight:normal;padding:15px 0;display:none;" id="basketSubmitWait" class="fill corner pure-button pure-button-disabled">Warte auf Standort..</button>
 	        </p>
 	    </fieldset>
 	</form>
@@ -286,8 +300,8 @@
 	        <legend>Login - lebensmittelretten.de</legend>
 	
 			<p>
-		        <input class="fill" id="email" type="email" placeholder="Deine E-Mail Adresse" value="">
-		        <input class="fill" id="password" type="password" placeholder="Dein Password" value="">
+		        <input class="fill" id="email" type="email" placeholder="Deine E-Mail Adresse" value="raphi@waldorfweb.net">
+		        <input class="fill" id="password" type="password" placeholder="Dein Password" value="h4nn3lor3">
 	 		</p>
 	 		<p>
 	       		<button id="savesettings" class="corner fill pure-button pure-button-primary">Speichern</button>

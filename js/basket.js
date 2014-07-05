@@ -1,10 +1,14 @@
 var basket = {
+	hideLocWait: function(){
+		$('#basketSubmitWait').hide();
+		$('#basketSubmit').show();
+	},
 	validate: function(){
 		if($('#description').val() == '')
 		{
 			$('#description')[0].focus();
 			window.scrollTo(0, 0);
-			msg.error('Bitte gib eine Beschreibung ein');
+			msg.info('Bitte gib eine Beschreibung ein');
 			return false;
 		}
 		
@@ -36,6 +40,12 @@ var basket = {
 				contact_type[contact_type.length] = $(this).val();
 			});
 			
+			fetchpoint = '0';
+			if($('.cb-fetch-point:checked').val() != 'home')
+			{
+				fetchpoint = 'loc';
+			}
+			
 			loader.show();
 			a.req('basket_submit',{
 				data: {
@@ -49,7 +59,8 @@ var basket = {
 					phone: $('#phone').val(),
 					phone_mobile: $('#phone_mobile').val(),
 					photo: $('#photo').val(),
-					weight: $('#weight').val()
+					weight: $('#weight').val(),
+					fp: fetchpoint
 				},
 				success: function(){
 					loader.hide();
@@ -79,6 +90,39 @@ var basket = {
 			});
 		}
 	},
+	getPosition: function(){
+		$('#basketSubmitWait').show();
+		$('#basketSubmit').hide();
+		
+		loader.miniShow();
+		this.watchId = navigator.geolocation.getCurrentPosition(
+			function(pos){
+				
+				c.lat = pos.coords.latitude;
+				c.lon = pos.coords.longitude;
+				$('#latitude').val(c.lat);
+				$('#longitude').val(c.lon);
+				$('#basketSubmitWait').hide();
+				$('#basketSubmit').show();
+				loader.miniHide();
+				
+			},
+            function(error){
+            	
+            	msg.error('Position konnte nicht ermittelt werden');
+            	$('#basketSubmitWait').hide();
+				$('#basketSubmit').show();
+				$(".cb-fetch-point[value='home']")[0].checked = true;
+				loader.miniHide();
+            	
+            },
+            { 
+            	maximumAge: 3000, 
+            	timeout: 600000, 
+            	enableHighAccuracy: true 
+            }
+        );
+	},
 	loadBasket: function(id)
 	{
 		// lade essenskorb fülle essenkorb seite un wechsle
@@ -101,6 +145,35 @@ var basket = {
 				{
 					$('#page-basket .picture').css('display','none');
 				}
+				
+				if(data.basket.lat > 0)
+				{
+					distance = L.latLng(c.lat, c.lon).distanceTo(L.latLng(data.basket.lat,data.basket.lon));
+					
+					if(distance >= 1000)
+					{
+						distance = t.number((distance/1000)) + ' km';
+					}
+					else
+					{
+						distance = t.number(distance) + ' m';
+					}
+					$('#b-distance').text(distance);
+					
+					$('#route-btn button').unbind('click').click(function(){
+						page.activate('map',{
+							complete: function(){
+								map.routeTo(data.basket.lat,data.basket.lon);
+							}
+						});
+					});
+				}
+				else
+				{
+					$('#route-btn').hide();
+				}
+				
+				
 				
 				/*
 				 * Anfrage Buttons

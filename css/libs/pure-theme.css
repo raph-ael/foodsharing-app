@@ -70,3 +70,23 @@ li label
 	background: linear-gradient(to bottom, #35a020 0%,#478a1b 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35a020', endColorstr='#478a1b',GradientType=0 ); /* IE6-9 */
 }
+
+.pure-menu li label
+{
+	display:block;
+	padding:10px 20px;
+	margin:0;
+}
+.pure-menu-heading
+{
+	margin-bottom:3px;
+	margin-top:5px;
+}
+.nosel
+{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+
+	user-select: none;
+}

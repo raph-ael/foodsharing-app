@@ -53,6 +53,7 @@
     <gap:plugin name="org.apache.cordova.file-transfer" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="org.apache.cordova.device" />
     
     <!-- other plugins -->
@@ -126,8 +127,12 @@
         Otherwise, you can specify specific domains:
     -->
     <!-- allow local pages -->
+    <!-- 
     <access origin="http://arcgisonline.com" subdomains="true" />
+    <access origin="http://project-osrm.org" subdomains="true" />
     <access origin="http://www.lebensmittelretten.de" />
+    -->
+    <access origin="*" /> 
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
         <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/

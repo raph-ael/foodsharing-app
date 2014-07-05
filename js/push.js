@@ -9,17 +9,16 @@ var push = {
 		
 		pushNotification = window.plugins.pushNotification;
 		
-		pushNotification.register(
-		    push.successHandler,
-		    push.errorHandler, {
-		        "senderID":"484531551799",
-		        "ecb":"onNotificationGCM"
-		 });
-		/*
-		alert(device.model);
-		if ( device.model == 'android' || device.model == 'Android' )
+		
+
+		if ( device.platform == 'android' || device.platform == 'Android' )
 		{
-		    
+		    pushNotification.register(
+			    push.successHandler,
+			    push.errorHandler, {
+			        "senderID":"484531551799",
+			        "ecb":"onNotificationGCM"
+			 });
 		}
 		else
 		{
@@ -32,7 +31,7 @@ var push = {
 		            "ecb":"onNotificationAPN"
 		        });
 		}
-		*/
+		
 		//this.notification.register(push.successHandler, push.errorHandler,{"senderID":"484531551799","ecb":"app.onNotificationGCM"});
 	},
 	successHandler: function(result) {

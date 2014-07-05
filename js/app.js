@@ -9,7 +9,10 @@ lang['settings'] = 'Einstellungen';
 document.addEventListener('deviceready',function(){
 		
 	// initialize Push Messaging
-		
+	position.get();
+	
+	document.body.className = t.id(device.platform);
+	
 	if(navigator.splashscreen)
     {
         navigator.splashscreen.hide();
@@ -17,10 +20,6 @@ document.addEventListener('deviceready',function(){
 		
 	push.init();
 	
-	if(init.location_counter <= 10)
-    {
-		init.location();
-	}
 	init.hardwareButtons();
 },false);
 
@@ -32,7 +31,6 @@ $(document).ready(function(){
 	});
 	
 	init.footer();
-	init.checkboxes();
 	init.cambutton();
 	
 	$('#title-wrapper').click(function(){
@@ -78,13 +76,6 @@ function loginDataSaved()
 		return false;
 	}
 	return false;
-}
-
-function setLocation(position)
-{
-	$('#latitude').val(position.coords.latitude);
-	$('#longitude').val(position.coords.longitude);
-	$('.geoview').show();  
 }
 
 function s(index)

@@ -1,39 +1,8 @@
 var init = {
 	location_counter: 0,
-	checkboxes: function()
-	{
-		$('.cbmenu a').click(function(ev){
-			ev.preventDefault();
-			cb = $(this).children('label').children('input')[0];
-			if(cb.checked)
-			{
-				cb.checked = false;
-			}
-			else
-			{
-				cb.checked = true;
-			}
-			
-			if($('.phone-check')[0].checked)
-			{
-				$('#phone-wrapper').css('display','block');
-			}
-			else
-			{
-				$('#phone-wrapper').css('display','none');
-			}
-			
-		});
-	},
 	footerTimeout : null,
 	footer: function()
 	{
-		var footer = $('#menu');
-		footer.animate({
-			'bottom':'-100px'
-		},200,function(){
-			footer.hide();
-		});
 		
 		$('#menu a.pagelink').click(function(ev){
 			ev.preventDefault();
@@ -51,7 +20,8 @@ var init = {
 	},
 	location: function()
 	{
-		$('.geoview').hide(); 
+		pos.getPosition();
+		//$('.geoview').hide(); 
 		/*
 		navigator.geolocation.getCurrentPosition(
 			// success get geolocation
@@ -80,31 +50,14 @@ var init = {
 	
 	},
 	fButtonsHide: function(){
-		var footer = $('#menu');
-		footer.animate({
-			'top':'-300px'
-		},100,function(){
-			footer.hide();
-		});
+		$('#menu').addClass('invisible');
 	},
 	fButtonsShow: function(){
-		var footer = $('#menu');
-		footer.show();
-		footer.animate({
-			'top':'42px'
-		},100);
+		$('#menu').removeClass('invisible');
 	},
 	menuClick: function()
 	{
-		if($('#menu').is(':visible'))
-		{
-			if(init.footerTimeout !== null)
-			{
-				clearTimeout(init.footerTimeout);
-			}
-			init.fButtonsHide();
-		}
-		else
+		if($('#menu').hasClass('invisible'))
 		{
 			if(init.footerTimeout !== null)
 			{
@@ -115,6 +68,14 @@ var init = {
 			init.footerTimeout = setTimeout(function(){
 				init.fButtonsHide();
 			},5000);
+		}
+		else
+		{
+			if(init.footerTimeout !== null)
+			{
+				clearTimeout(init.footerTimeout);
+			}
+			init.fButtonsHide();
 		}
 	},
 	hardwareButtons: function(){

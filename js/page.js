@@ -1,7 +1,13 @@
 var page = {
 	
-	activate: function(name)
+	activate: function(name,options)
 	{		
+		
+		if(options == undefined)
+		{
+			options = {};
+		}
+		
 		if(loginDataSaved() == false)
 		{
 			name = 'settings';
@@ -18,11 +24,21 @@ var page = {
 				map.map.invalidateSize(false);
 			}
 			map.init(c.lat, c.lon, c.zoom);
+			map.startWatch();
+		}
+		else
+		{
+			map.stopWatch();
 		}
 		
 		c.backpage = c.currentpage;
 		c.currentpage = name;
 		init.fButtonsHide();
+		
+		if(options.complete != undefined)
+		{
+			options.complete();
+		}
 		
 	},
 	setFootMenu: function(index){	

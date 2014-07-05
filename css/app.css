@@ -1,3 +1,49 @@
+.loc-icon 
+{
+	z-index:2000 !important;
+}
+.faicon span
+{
+	display:block;
+	width:30px;
+	height:30px;
+	margin:0;
+}
+
+.faicon span i
+{
+	font-size:30px;
+	color:#35A020;
+}
+.loc-icon span
+{
+	transition: transform 0.4s;
+	z-index: 2010;
+	background-color: rgba(255,255,255,0.17);
+	border-radius: 21px;
+    border:1px solid rgba(102,83,67,0.5);
+    padding:6px;
+    text-align: center;
+}
+.loc-icon span i
+{
+	color:#665343;
+	font-weight:bold;
+}
+.faicon.basket-icon, .faicon.basket-icon span
+{
+	width:50px;
+	height:50px;
+	text-align: center;
+}
+.faicon.basket-icon  span i
+{
+	width:50px;
+	height:50px;
+	font-size: 50px;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #fff;
+}
 #title
 {
     max-width: 50%;
@@ -122,6 +168,12 @@ header .pure-menu-heading span
     z-index: 1100;
     top:42px;
     height:132px
+    -webkit-transition-property: top;
+    -webkit-transition-duration: 0.1s;
+}
+#menu.invisible
+{
+	top:-160px;
 }
 #menu .pure-button
 {
@@ -191,6 +243,34 @@ input{
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
     outline: none !important;
 } 
+body .statusbar
+{
+	display:none;
+	background-color: #FFF;
+	height:20px;
+	z-index: 2000;
+	top:0px;
+	position: fixed;
+	left:0px;
+	width:100%;
+}
+body.ios
+{
+	margin-top:20px;
+}
+body.ios .statusbar
+{
+	display:block;
+}
+body.ios header .pure-menu-fixed, body.ios header
+{
+	top:20px;
+}
+
+.leaflet-right
+{
+	display:none !important;
+}
 /*
  * Loader
  */
