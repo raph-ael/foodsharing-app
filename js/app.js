@@ -12,11 +12,6 @@ document.addEventListener('deviceready',function(){
 	position.get();
 	
 	document.body.className = t.id(device.platform);
-	
-	if(navigator.splashscreen)
-    {
-        navigator.splashscreen.hide();
-    }
 		
 	push.init();
 	
@@ -66,6 +61,10 @@ $(document).ready(function(){
 		}
 	});
 	
+    if(navigator.splashscreen)
+    {
+        navigator.splashscreen.hide();
+    }
 });
 
 function loginDataSaved()
