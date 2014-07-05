@@ -36,7 +36,7 @@ var u = {
 			store.del('lmr-pass');
 			store.del('lmr-token');
 			
-			loader.show();
+			loader.miniShow();
 	
 			a.req('login',{
 				data:{
@@ -85,7 +85,7 @@ var u = {
 						option.success();
 					}
 					
-					loader.hide();
+					loader.miniHide();
 					
 				},
 				error: function(){
