@@ -6,5 +6,6 @@ var c = {
 	lat:null,
 	lon:null,
 	zoom:13,
-	pushgcm:0
+	pushgcm:0,
+	pushios:0
 };

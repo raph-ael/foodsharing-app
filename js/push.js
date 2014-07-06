@@ -62,8 +62,27 @@ var push = {
 
 function tokenHandler (result) 
 {
+	c.pushios = result;
+	setIosToken();
+	  
 	alert('token: ' + result);
-    u.setIOSID(result);
+    
+}
+
+function setIosToken()
+{
+	if(u.loggedIn)
+	{
+		alert('send token' + c.pushios);
+		u.setIOSID(c.pushios);
+	}
+	else
+	{
+	  	  loader.miniShow();
+	      window.setTimeout(function(){
+	      	setIosToken();
+	      },100);
+	}
 }
 
 function onNotificationAPN (event) {
