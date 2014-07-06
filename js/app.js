@@ -16,6 +16,9 @@ document.addEventListener('deviceready',function(){
 	push.init();
 	
 	init.hardwareButtons();
+	
+	cache.init();
+	
 },false);
 
 $(document).ready(function(){

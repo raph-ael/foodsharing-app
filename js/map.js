@@ -25,6 +25,7 @@ var map = {
 	route: null,
 	map: null,
 	latLng: null,
+	tileLayer:null,
 	init: function(lat,lon,zoom)
 	{
 		this.lat = lat;
@@ -38,9 +39,12 @@ var map = {
 			
 			new L.Control.Zoom({ position: 'bottomleft' }).addTo(this.map);
 			
-			L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+			this.tileLayer = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 				attribution: 'Tiles &copy; Esri 2014'
-			}).addTo(this.map);
+			});
+			
+			this.tileLayer.addTo(this.map);
+			
 			
 			this.initMarker();
 			
