@@ -70,8 +70,6 @@ var cache = {
 	fire: function(tile,url){
 		tile.src = url;
 		
-		alert(url);
-		
 		map.tileLayer.fire('tileloadstart', {
 			tile: tile,
 			url: tile.src
