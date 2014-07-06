@@ -20,6 +20,14 @@ var u = {
 			}
 		});
 	},
+	setIOSID: function(regid){
+		loader.miniShow();
+		a.req('setiosid',{
+			data:{
+				i:regid
+			}
+		});
+	},
 	login: function(option){
 		
 		if(option == undefined)

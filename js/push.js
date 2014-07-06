@@ -59,6 +59,11 @@ var push = {
    }
 };
 
+function tokenHandler (result) 
+{
+    u.setIOSID(result);
+}
+
 function onNotificationAPN (event) {
     if ( event.alert )
     {
