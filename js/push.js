@@ -22,9 +22,10 @@ var push = {
 		}
 		else
 		{
+			alert('register pushnotify');
 		    pushNotification.register(
 		        tokenHandler,
-		        errorHandler, {
+		        push.errorHandler, {
 		            "badge":"true",
 		            "sound":"true",
 		            "alert":"true",
@@ -61,10 +62,14 @@ var push = {
 
 function tokenHandler (result) 
 {
+	alert('token: ' + result);
     u.setIOSID(result);
 }
 
 function onNotificationAPN (event) {
+	
+	alert('apn!');
+	
     if ( event.alert )
     {
         navigator.notification.alert(event.alert);
