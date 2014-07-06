@@ -271,6 +271,64 @@ body.ios header .pure-menu-fixed, body.ios header
 {
 	display:none !important;
 }
+.footer
+{
+	position: fixed;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	padding:0;
+	background-color: #FFFFFF;
+}
+#msg-control input
+{
+	padding:10px;
+	font-size:13px;
+}
+ul#conversation, ul#conversation li
+{
+	list-style:none;
+	display:block;
+	margin:0;
+	padding:0;
+}
+ul#conversation li
+{
+	background-color:#FFFFFF;
+	padding:8px;
+	margin-top:8px;
+	border-radius:8px;
+}
+ul#conversation li span
+{
+	display:block;
+	margin:0;
+	padding:0;
+}
+ul#conversation li span.photo
+{
+	float:left;
+	margin-right:8px;
+}
+ul#conversation li span.text
+{
+	float:left;
+	color:#665343;
+	font-size:13px;
+}
+ul#conversation li span.msg
+{
+	
+}
+ul#conversation li span.info
+{
+	font-size:11px;
+	color:#aba8a2;
+}
+ul#conversation li span.clear
+{
+	clear:both;
+}
 /*
  * Loader
  */
