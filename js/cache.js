@@ -30,7 +30,7 @@ var cache = {
 		    uri,
 		    url.pathCache,
 		    function(entry) {		        
-		        cache.fire(tile,url.pathCache);
+		        cache.fire(tile,entry.toURL());
 		    },
 		    function(error) {
 		    	// on error fire default src to map tile
@@ -47,9 +47,9 @@ var cache = {
 	},
 	tileExists: function(tile,url){
 		
-		this.fileSystem.root.getFile(url.rootCache, { create: false }, function(){
+		this.fileSystem.root.getFile(url.rootCache, { create: false }, function(entry){
 			// file exists just load it from sdcard
-		    cache.fire(tile,url.pathCache);
+		    cache.fire(tile,entry.toURL());
 		    
 		}, function(){
 			// file not exists lets download it
@@ -61,8 +61,6 @@ var cache = {
 		rootCache = '.foodsharing/' + tile.src.split('/World_Street_Map/MapServer/')[1];
 		pathCache = this.fileSystem.root.toURL() + rootCache;
 		
-		alert(pathCache);
-		
 		return {
 			rootCache: rootCache,
 			pathCache: pathCache
@@ -71,6 +69,9 @@ var cache = {
 	},
 	fire: function(tile,url){
 		tile.src = url;
+		
+		alert(url);
+		
 		map.tileLayer.fire('tileloadstart', {
 			tile: tile,
 			url: tile.src
