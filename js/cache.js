@@ -61,6 +61,8 @@ var cache = {
 		rootCache = '.foodsharing/' + tile.src.split('/World_Street_Map/MapServer/')[1];
 		pathCache = this.fileSystem.root.toURL() + rootCache;
 		
+		alert(pathCache);
+		
 		return {
 			rootCache: rootCache,
 			pathCache: pathCache
