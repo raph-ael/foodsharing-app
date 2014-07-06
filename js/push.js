@@ -3,7 +3,7 @@ var push = {
 	registered:false,
 	init: function()
 	{
-		//alert('push.init()');
+		alert('push.init()');
 		
 		//alert(window.device.model+'');
 		
