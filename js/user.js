@@ -114,8 +114,8 @@ var u = {
 					}
 					else
 					{
-						page.activate('foodbasket');
-						//chat.load(56);
+						//page.activate('foodbasket');
+						chat.load(56);
 					}
 					loader.miniHide();
 					

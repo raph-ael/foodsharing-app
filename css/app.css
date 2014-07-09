@@ -308,12 +308,17 @@ ul.contacts li a
 {
 	text-decoration: none;
 }
-ul.contacts li
+ul.contacts li, #chat-loader
 {
 	background-color:#FFFFFF;
 	padding:8px;
 	margin-top:8px;
 	border-radius:8px;
+}
+#chat-loader
+{
+	height:50px;
+	text-align:center;
 }
 ul.contacts li span
 {

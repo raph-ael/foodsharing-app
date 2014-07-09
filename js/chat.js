@@ -19,23 +19,48 @@ var chat = {
 	},
 	submit: function(){
 		$msg = $('#chat-msg');
-		if(parseInt(this.activeId) > 0 && $msg.val() != '')
+		message = $msg.val();
+		if(parseInt(this.activeId) > 0 && message != '')
 		{
-			alert($msg.val());
-			
+			//alert($msg.val());
+			this.showLoader();
 			$msg.val('');
 			$msg[0].focus();
+			a.req('sendmsg',{
+				data: {
+					m: message,
+					id: chat.activeId
+				},
+				success: function(){
+					chat.hideLoader();
+				}
+			});
+			
+			
 		}
 	},
+	getPush: function(e)
+	{
+		msg = {m:e.message};
+		$('#conversation').append(this.tpl(msg));
+		
+	},
 	showLoader: function(){
-		$conv = $('#conversation');
-		$conv.append('<li class="loader"></li>');
+		$('#chat-loader').show();
+		chat.bottomScroll();
+	},
+	hideLoader: function(){
+		$('#chat-loader').hide();
+	},
+	bottomScroll: function(){
+		window.scrollTo(0, document.body.scrollHeight);
 	},
 	loadHistory: function(){
 		loader.miniShow();
 		a.req('chathistory',{
 			data: {id:chat.activeId},
 			success: function(ret){
+				ret.history.reverse();
 				$conv = $('#conversation');
 				for(i=0;i<ret.history.length;i++)
 				{
@@ -44,8 +69,9 @@ var chat = {
 				}
 				
 				page.activate('chat');
-				window.scrollTo(0, document.body.scrollHeight);
+				chat.bottomScroll();
 				loader.hide();
+				$('#chat-msg')[0].focus();
 			}
 		});
 	},

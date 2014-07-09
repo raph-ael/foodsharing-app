@@ -20,7 +20,7 @@ var push = {
 		}
 		else
 		{
-			alert('register pushnotify');
+			//alert('register pushnotify');
 		    pushNotification.register(
 		        tokenHandler,
 		        push.errorHandler, {
@@ -55,6 +55,19 @@ var push = {
 	      	push.coldstart();
 	      },100);
 	  }
+   },
+   foreground: function(e)
+   {
+   		alert(dump(e.payload));
+   		switch(e.type)
+   		{
+   			case 'msg' :
+   				chat.getPush(e);
+   				break;
+   				
+   			default:
+			    break;
+   		}
    }
 };
 
@@ -85,7 +98,7 @@ function setIosToken()
 
 function onNotificationAPN (event) {
 	
-	//alert('apn!');
+	alert(event);
 	
     if ( event.alert )
     {
@@ -124,6 +137,7 @@ function onNotificationGCM(e) {
         // you might want to play a sound to get the user's attention, throw up a dialog, etc.
         if ( e.foreground )
         {
+        	push.foreground(e);
             //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 			msg.info('Du hast eine Essenskorb Anfrage erhalten!');
 			basket.showRequests();
