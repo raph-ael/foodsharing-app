@@ -56,13 +56,13 @@ var push = {
 	      },100);
 	  }
    },
-   foreground: function(e)
+   foreground: function(type,data)
    {
-   		//alert(dump());
-   		switch(e.type)
+   		alert(type + ':' +dump(data));
+   		switch(type)
    		{
-   			case 'msg' :
-   				chat.getPush(e);
+   			case 1 :
+   				chat.getPush(data.i,data.message);
    				break;
    				
    			default:
@@ -100,13 +100,14 @@ function setIosToken()
 
 function onNotificationAPN (event) {
 	
-	//alert(dump(event));
+	alert(dump(event));
 	
 	if(event.foreground)
 	{
-		push.foreground(event);
+		push.foreground(parseInt(event.d.t),event.d);
 	}
 	
+	/*
     if ( event.alert )
     {
         navigator.notification.alert(event.alert);
@@ -122,11 +123,14 @@ function onNotificationAPN (event) {
     {
         pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
     }
+    */
 }
 
 // Android
 function onNotificationGCM(e) {
     $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+
+	alert(dump(e));
 
     switch( e.event )
     {
@@ -144,7 +148,7 @@ function onNotificationGCM(e) {
         // you might want to play a sound to get the user's attention, throw up a dialog, etc.
         if ( e.foreground )
         {
-        	push.foreground(e.payload);
+        	push.foreground(e.payload.d.t,e.payload);
             //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 			
             // if the notification contains a soundname, play it.

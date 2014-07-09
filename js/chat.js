@@ -25,7 +25,6 @@ var chat = {
 			//alert($msg.val());
 			this.showLoader();
 			$msg.val('');
-			$msg[0].focus();
 			a.req('sendmsg',{
 				data: {
 					m: message,
@@ -39,9 +38,10 @@ var chat = {
 			
 		}
 	},
-	getPush: function(e)
+	getPush: function(id,message)
 	{
-		msg = {m:e.message};
+		alert(id+'=>'+message);
+		msg = {m:message};
 		$('#conversation').append(this.tpl(msg));
 		this.bottomScroll();
 		
@@ -72,7 +72,6 @@ var chat = {
 				page.activate('chat');
 				chat.bottomScroll();
 				loader.hide();
-				$('#chat-msg')[0].focus();
 			}
 		});
 	},
