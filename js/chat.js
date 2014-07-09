@@ -41,8 +41,9 @@ var chat = {
 	},
 	getPush: function(e)
 	{
-		msg = {m:e.message};
+		msg = {m:e.payload.message};
 		$('#conversation').append(this.tpl(msg));
+		this.bottomScroll();
 		
 	},
 	showLoader: function(){

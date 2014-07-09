@@ -58,8 +58,8 @@ var push = {
    },
    foreground: function(e)
    {
-   		alert(dump(e.payload));
-   		switch(e.type)
+   		//alert(dump());
+   		switch(e.payload.type)
    		{
    			case 'msg' :
    				chat.getPush(e);
@@ -67,6 +67,8 @@ var push = {
    				
    			default:
 			    break;
+			    msg.info('Du hast eine Essenskorb Anfrage erhalten!');
+				basket.showRequests();
    		}
    }
 };
@@ -139,8 +141,7 @@ function onNotificationGCM(e) {
         {
         	push.foreground(e);
             //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-			msg.info('Du hast eine Essenskorb Anfrage erhalten!');
-			basket.showRequests();
+			
             // if the notification contains a soundname, play it.
            // var my_media = new Media("/android_asset/www/"+e.soundname);
            // my_media.play();
