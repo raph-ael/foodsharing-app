@@ -4,6 +4,8 @@ var a = {
 		alert('ready');
 	},
 	req: function(method,option){
+		var method = method;
+		var option = option;
 		
 		if(option == undefined)
 		{
@@ -21,6 +23,7 @@ var a = {
 		}
 		
 		loader.miniShow();
+		
 		$.ajax({
 	        url: 'http://' + c.domain + '/freiwillige/xhrapp.php?app=' + option.app + '&m=' + method + '&format=jsonp&callback=?',
 	        dataType: 'jsonp',
@@ -32,6 +35,10 @@ var a = {
 	            if(option.success != undefined && json.status == 1)
 				{
 					option.success(json);
+				}
+				else if(json.status == 2)
+				{
+					u.relogin(method,option);
 				}
 				else if(option.success != undefined && option.error != undefined)
 				{
@@ -103,15 +110,10 @@ var a = {
 };
 
 var loader = {
-	miniVisible:false,
 	visible:false,
 	miniShow: function()
 	{
-		if(!this.miniVisible)
-		{
-			this.miniVisible = true;
-			$('#mini-loader').stop().fadeIn();
-		}
+		$('#mini-loader').stop().fadeIn();
 	},
 	pageHide: function(){
 		$('.pageloader').hide();
@@ -122,11 +124,7 @@ var loader = {
 		$('.pageContent').hide();
 	},
 	miniHide: function(){
-		if(this.miniVisible)
-		{
-			$('#mini-loader').stop().fadeOut();
-			this.miniVisible = false;
-		}
+		$('#mini-loader').stop().fadeOut();
 	},
 	show: function(){
 		if(!this.visible)

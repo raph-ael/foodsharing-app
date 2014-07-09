@@ -56,10 +56,11 @@
 	font-style: normal;
   	font-weight: 400;
 }
-.mini-loader
+#mini-loader
 {
 	position:relative;
-	top:2px;
+	top:7px;
+	float:left;
 }
 .pure-button
 {
@@ -148,7 +149,7 @@ header .pure-menu-heading span
 }
 .pure-menu span
 {
-	
+	display:inline !important;
 }
 .pure-menu .time
 {
@@ -161,6 +162,12 @@ header .pure-menu-heading span
 	display:block;
 	clear:both;
 }
+label.nosel input
+{
+	position:relative;
+	left:-150px;
+	margin-right:-16px;
+}
 #menu
 {
 	position:fixed;
@@ -171,22 +178,26 @@ header .pure-menu-heading span
     -webkit-transition-property: top;
     -webkit-transition-duration: 0.1s;
 }
+.ios #menu
+{
+    top:62px;
+}
 #menu.invisible
 {
 	top:-160px;
+	/*display:none;*/
 }
 #menu .pure-button
-{
-	color:#665343;
-	background-color: #A9A59C;
-	box-shadow: 0;
-}
-
-#menu .pure-button-active,#menu, #menu .pure-button-active:active
 {
 	color:#4A911D;
 	background-color: #F5F1E8;
 	box-shadow: none;
+}
+
+#menu .pure-button-active,#menu, #menu .pure-button-active:active
+{
+	color:#665343;
+	box-shadow: 0;
 }
 .pure-button-active, .pure-button:active
 {
@@ -282,188 +293,63 @@ body.ios header .pure-menu-fixed, body.ios header
 }
 #msg-control input
 {
-	padding:10px;
+	padding:8px;
 	font-size:13px;
+	border:0;
 }
-ul#conversation, ul#conversation li
+ul.contacts, ul.contacts li, ul.contacts li a
 {
 	list-style:none;
 	display:block;
 	margin:0;
 	padding:0;
 }
-ul#conversation li
+ul.contacts li a
+{
+	text-decoration: none;
+}
+ul.contacts li
 {
 	background-color:#FFFFFF;
 	padding:8px;
 	margin-top:8px;
 	border-radius:8px;
 }
-ul#conversation li span
+ul.contacts li span
 {
 	display:block;
 	margin:0;
 	padding:0;
 }
-ul#conversation li span.photo
+ul.contacts li span.photo
 {
 	float:left;
 	margin-right:8px;
 }
-ul#conversation li span.text
+ul.contacts li span.text
 {
 	float:left;
 	color:#665343;
 	font-size:13px;
 }
-ul#conversation li span.msg
+ul.contacts li span.msg
 {
 	
 }
-ul#conversation li span.info
+ul.contacts li span.info
 {
 	font-size:11px;
 	color:#aba8a2;
 }
-ul#conversation li span.clear
+ul.contacts li span.clear
 {
 	clear:both;
 }
-/*
- * Loader
- */
-.bubblingG {
-text-align: center;
-width:38px;
-height:20px;
-float:left;
+.checkbox
+{
+	color:#665343 !important;
 }
-
-.bubblingG span {
-display: inline-block;
-vertical-align: middle;
-width: 5px;
-height: 5px;
-margin: 12px auto;
-background: #FFFFFF;
--moz-border-radius: 24px;
--moz-animation: bubblingG 1.3s infinite alternate;
--webkit-border-radius: 24px;
--webkit-animation: bubblingG 1.3s infinite alternate;
--ms-border-radius: 24px;
--ms-animation: bubblingG 1.3s infinite alternate;
--o-border-radius: 24px;
--o-animation: bubblingG 1.3s infinite alternate;
-border-radius: 24px;
-animation: bubblingG 1.3s infinite alternate;
+.checkbox.checked
+{
+	font-weight:bold;
 }
-
-#bubblingG_1 {
--moz-animation-delay: 0s;
--webkit-animation-delay: 0s;
--ms-animation-delay: 0s;
--o-animation-delay: 0s;
-animation-delay: 0s;
-}
-
-#bubblingG_2 {
--moz-animation-delay: 0.39s;
--webkit-animation-delay: 0.39s;
--ms-animation-delay: 0.39s;
--o-animation-delay: 0.39s;
-animation-delay: 0.39s;
-}
-
-#bubblingG_3 {
--moz-animation-delay: 0.78s;
--webkit-animation-delay: 0.78s;
--ms-animation-delay: 0.78s;
--o-animation-delay: 0.78s;
-animation-delay: 0.78s;
-}
-
-@-moz-keyframes bubblingG {
-0% {
-width: 5px;
-height: 5px;
-background-color:#FFFFFF;
--moz-transform: translateY(0);
-}
-
-100% {
-width: 11px;
-height: 11px;
-background-color:#665343;
--moz-transform: translateY(-10px);
-}
-
-}
-
-@-webkit-keyframes bubblingG {
-0% {
-width: 5px;
-height: 5px;
-background-color:#FFFFFF;
--webkit-transform: translateY(0);
-}
-
-100% {
-width: 11px;
-height: 11px;
-background-color:#665343;
--webkit-transform: translateY(-10px);
-}
-
-}
-
-@-ms-keyframes bubblingG {
-0% {
-width: 5px;
-height: 5px;
-background-color:#FFFFFF;
--ms-transform: translateY(0);
-}
-
-100% {
-width: 11px;
-height: 11px;
-background-color:#665343;
--ms-transform: translateY(-10px);
-}
-
-}
-
-@-o-keyframes bubblingG {
-0% {
-width: 5px;
-height: 5px;
-background-color:#FFFFFF;
--o-transform: translateY(0);
-}
-
-100% {
-width: 11px;
-height: 11px;
-background-color:#665343;
--o-transform: translateY(-10px);
-}
-
-}
-
-@keyframes bubblingG {
-0% {
-width: 5px;
-height: 5px;
-background-color:#FFFFFF;
-transform: translateY(0);
-}
-
-100% {
-width: 11px;
-height: 11px;
-background-color:#665343;
-transform: translateY(-10px);
-}
-
-}
-

@@ -1,3 +1,7 @@
+a,td,th,div,p,input,textarea,label,select,option
+{
+	font-family: "Andika";
+}
 
 a
 {
@@ -71,11 +75,16 @@ li label
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35a020', endColorstr='#478a1b',GradientType=0 ); /* IE6-9 */
 }
 
-.pure-menu li label
+.pure-menu li
 {
 	display:block;
-	padding:10px 20px;
+	padding:0;
 	margin:0;
+}
+.pure-menu li label
+{
+	display:inline-block;
+	padding:10px 2%;
 }
 .pure-menu-heading
 {

@@ -2,9 +2,7 @@ var pushNotification;
 var push = {
 	registered:false,
 	init: function()
-	{
-		alert('push.init()');
-		
+	{		
 		//alert(window.device.model+'');
 		
 		pushNotification = window.plugins.pushNotification;
@@ -40,7 +38,7 @@ var push = {
     	this.registered = true;
     },
 	errorHandler:function(error) {
-	    alert(error);
+	   // alert(error);
 	},
    showMessage: function(){
    	   loader.miniHide();
@@ -65,7 +63,7 @@ function tokenHandler (result)
 	c.pushios = result;
 	setIosToken();
 	  
-	alert('token: ' + result);
+	//alert('token: ' + result);
     
 }
 
@@ -73,7 +71,7 @@ function setIosToken()
 {
 	if(u.loggedIn)
 	{
-		alert('send token' + c.pushios);
+		//alert('send token' + c.pushios);
 		u.setIOSID(c.pushios);
 	}
 	else
@@ -87,7 +85,7 @@ function setIosToken()
 
 function onNotificationAPN (event) {
 	
-	alert('apn!');
+	//alert('apn!');
 	
     if ( event.alert )
     {

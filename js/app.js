@@ -1,6 +1,5 @@
 var lang = new Array ();
 
-
 init.location_counter = 0;
 
 lang['foodbasket'] = 'Essenskorb';
@@ -19,9 +18,17 @@ document.addEventListener('deviceready',function(){
 	
 	cache.init();
 	
+	if(c.splashVisible)
+    {
+    	c.splashVisible = false;
+        navigator.splashscreen.hide();
+    }
+	
 },false);
 
 $(document).ready(function(){
+	
+	loader.miniShow();
 	
 	var u_loader = $('#loader');
 	u_loader.fadeOut(1,function(){
@@ -30,29 +37,14 @@ $(document).ready(function(){
 	
 	init.footer();
 	init.cambutton();
+	init.checkboxes();
 	
-	$('#title-wrapper').click(function(){
+	$('#title-wrapper').bind('touchstart', function(ev){
 		init.menuClick();
-	});
-
+    });
+	
 	init.checkLogin();
 	init.login_data();
-	
-	$('#basketSubmit').click(function(ev){
-		ev.preventDefault();
-		basket.submit();
-	});
-	
-	$('input.phone-check').parent().click(function(){
-		if($(this).children('input:checked').length > 0)
-		{
-			$('#phone-wrapper').show();
-		}
-		else
-		{
-			$('#phone-wrapper').hide();
-		}
-	});
 	
 	loader.miniHide();
 	
@@ -64,10 +56,14 @@ $(document).ready(function(){
 		}
 	});
 	
-    if(navigator.splashscreen)
+	if(c.splashVisible)
     {
+    	c.splashVisible = false;
         navigator.splashscreen.hide();
     }
+    
+    
+	
 });
 
 function loginDataSaved()

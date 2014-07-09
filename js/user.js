@@ -28,6 +28,14 @@ var u = {
 			}
 		});
 	},
+	relogin: function(method,options){
+		u.login({
+			success: function(){
+				alert(method);
+				a.req(method,options);
+			}
+		});
+	},
 	login: function(option){
 		
 		if(option == undefined)
@@ -86,14 +94,17 @@ var u = {
 					//$('#title').text(json.name);
 					
 					this.loginTryCount = 0;
-					page.activate('foodbasket');
+					
 					//chat.init();
 					
 					if(option.success != undefined)
 					{
 						option.success();
 					}
-					
+					else
+					{
+						page.activate('foodbasket');
+					}
 					loader.miniHide();
 					
 				},

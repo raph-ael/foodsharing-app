@@ -7,5 +7,6 @@ var c = {
 	lon:null,
 	zoom:13,
 	pushgcm:0,
-	pushios:0
+	pushios:0,
+	splashVisible: true
 };

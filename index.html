@@ -7,6 +7,7 @@
   
   <link rel="stylesheet" href="css/libs/font-awesome.min.css" />  
   <link rel="stylesheet" href="css/fonts/alfaslabone/stylesheet.css" />  
+  <link rel="stylesheet" href="css/fonts/andika/style.css" />  
   <link rel="stylesheet" href="css/libs/pure.css" />
   <link rel="stylesheet" href="css/libs/pure-theme.css" />
   <link rel="stylesheet" href="css/app.css" />
@@ -24,7 +25,8 @@
   <script src="js/libs/leaflet/leaflet-src.js"></script>
   <script src="js/libs/leaflet/markercluster/leaflet.markercluster.js"></script>
   <script src="js/libs/leaflet/routing/leaflet-routing-machine.js"></script>
-  <script src="js/libs/jquery.js"></script>  
+  <script src="js/libs/jquery.js"></script> 
+  <script src="js/libs/jquery.autosize.js"></script> 
   
   <!-- own scripts -->
   <script src="js/push.js"></script> 
@@ -32,6 +34,7 @@
   <script src="js/config.js"></script> 
   
   <script src="js/msg.js"></script> 
+  <script src="js/chat.js"></script> 
   <script src="js/position.js"></script> 
   <script src="js/cache.js"></script> 
   <script src="js/lmrwrapper.js"></script> 
@@ -62,14 +65,9 @@
         </div>
 
         <div id="title-wrapper" class="pure-menu-heading" style="float:right;max-width: 50%; overflow: hidden;">
-           <div id="mini-loader" class="bubblingG">
-				<span id="bubblingG_1">
-				</span>
-				<span id="bubblingG_2">
-				</span>
-				<span id="bubblingG_3">
-				</span>
-			</div>&nbsp; <span id="title"><i style="font-size:31px;" class="fa fa-bars"></i></span>
+           <div id="mini-loader">
+				<img src="img/mini-loader.gif" />
+			</div>&nbsp;<span id="title"><i style="font-size:31px;" class="fa fa-bars"> </i></span>
         </div>
     </div>
   </header>
@@ -200,55 +198,79 @@
 						<option value="90">90,00 kg</option>
 						<option value="100">100,00 kg</option>
 				</select>
-	        	
 	        </p>
 	        
-	        <div class="corner cbmenu pure-menu pure-menu-open">				
-			    <ul>
-					<li class="pure-menu-heading">Kontaktaufnahme</li>
-					
-					<li><label class="nosel"><input type="checkbox" value="1" name="contact_type[]" class="input cb-contact_type">&nbsp;per Nachricht</label></li>
-					<li><label class="nosel"><input type="checkbox" value="2" name="contact_type[]" class="phone-check input cb-contact_type">&nbsp;per Telefon-Anruf</label></li>
-				</ul>
-			</div>
-			
-			<p id="phone-wrapper" style="display:none;">
-		       <input class="fill" id="phone" type="text" placeholder="Telefon-Nummer">
-		       <input style="display: none;" class="fill" id="phone_mobile" type="text" placeholder="Telefon-Nummer">
-		    </p>
-			
-			<div class="corner cbmenu pure-menu pure-menu-open">
+	        <p>
+	        	<label for="weight">was trifft zu?</label>
+	        	<select id="food-art" name="weight" class="fill">
+					<option value="0">Bitte Auswählen...</option>
+					<option value="2">ist vegetarisch</option>
+					<option value="3">ist vegan</option>
+				</select>
+	        </p>
+	        
+	        <p>
+				<legend id="cb-details-label"><i class="fa fa-caret-right"></i> Details</legend>
+			</p>
+			<div style="display:none;" id="cb-details" class="corner cbmenu pure-menu pure-menu-open">
 				<ul>
 					<li class="pure-menu-heading">Art der Lebensmittel</li>
 					
-					<li><label class="nosel"><input type="checkbox" value="1" name="food_type[]" class="input cb-food_type">&nbsp;Backwaren</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="2" name="food_type[]" class="input cb-food_type">&nbsp;Obst &amp; Gemüse</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="3" name="food_type[]" class="input cb-food_type">&nbsp;Molkereiprodukte</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="4" name="food_type[]" class="input cb-food_type">&nbsp;Trockenware</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="5" name="food_type[]" class="input cb-food_type">&nbsp;Tiefkühlware</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="6" name="food_type[]" class="input cb-food_type">&nbsp;Zubreitetete Speisen</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="7" name="food_type[]" class="input cb-food_type">&nbsp;Tierfutter</label></a></li>
+					<li><label class="nosel checkbox"><input type="checkbox" value="1" name="food_type[]" class="input cb-food_type"><i class="fa fa-square-o"></i>&nbsp;Backwaren</label></a></li>
+					<li><label class="nosel checkbox"><input type="checkbox" value="2" name="food_type[]" class="input cb-food_type"><i class="fa fa-square-o"></i>&nbsp;Obst &amp; Gemüse</label></a></li>
+					<li><label class="nosel checkbox"><input type="checkbox" value="3" name="food_type[]" class="input cb-food_type"><i class="fa fa-square-o"></i>&nbsp;Molkereiprodukte</label></a></li>
+					<li><label class="nosel checkbox"><input type="checkbox" value="4" name="food_type[]" class="input cb-food_type"><i class="fa fa-square-o"></i>&nbsp;Trockenware</label></a></li>
+					<li><label class="nosel checkbox"><input type="checkbox" value="5" name="food_type[]" class="input cb-food_type"><i class="fa fa-square-o"></i>&nbsp;Tiefkühlware</label></a></li>
+					<li><label class="nosel checkbox"><input type="checkbox" value="6" name="food_type[]" class="input cb-food_type"><i class="fa fa-square-o"></i>&nbsp;Zubreitetete Speisen</label></a></li>
+					<li><label class="nosel checkbox"><input type="checkbox" value="7" name="food_type[]" class="input cb-food_type"><i class="fa fa-square-o"></i>&nbsp;Tierfutter</label></a></li>
 	
-			
-					<li class="pure-menu-heading">Was trifft zu?</li>
+				</ul>
+			</div>
+	        
+	        
+	        
+	         <p>
+				<legend id="cb-contact-label"><i class="fa fa-caret-right"></i> Kontaktaufnahme</legend>
+			</p>
+			<div style="display:none;" id="cb-contact">
+		        <div class="corner cbmenu pure-menu pure-menu-open">				
+				    <ul>						
+						<li><label class="nosel checkbox checked"><input checked="checked" type="checkbox" value="1" name="contact_type[]" class="input cb-contact_type"><i class="fa fa-check-square-o"></i>&nbsp;per Nachricht</label></li>
+						<li><label class="nosel checkbox"><input type="checkbox" value="2" name="contact_type[]" class="phone-check input cb-contact_type"><i class="fa fa-square-o"></i>&nbsp;per Telefon-Anruf</label></li>
+					</ul>
 					
-					<li><label class="nosel"><input type="checkbox" value="1" name="food_art[]" class="input cb-food_art">&nbsp;sind Bio</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="2" name="food_art[]" class="input cb-food_art">&nbsp;sind vegetarisch</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="3" name="food_art[]" class="input cb-food_art">&nbsp;sind vegan</label></a></li>
-					<li><label class="nosel"><input type="checkbox" value="4" name="food_art[]" class="input cb-food_art">&nbsp;sind glutenfrei</label></a></li>
-	
-					<li class="geoview pure-menu-heading">Abholort</li>
-					
+				</div>
+				<p id="phone-wrapper" style="display:none;">
+			       <input class="fill" id="phone" type="text" placeholder="Telefon-Nummer">
+			       <input style="display: none;" class="fill" id="phone_mobile" type="text" placeholder="Telefon-Nummer">
+			    </p>
+			</div>
+	        
+	        
+	        
+	        <p>
+				<legend id="cb-location-label"><i class="fa fa-caret-right"></i> Abholort</legend>
+			</p>
+			<div style="display:none;" id="cb-location" class="corner cbmenu pure-menu pure-menu-open">
+				<ul>
 					<li class="geoview">
-						<label onclick="basket.hideLocWait();" class="pure-radio nosel"><input class="cb-fetch-point" checked="checked" type="radio" value="home" name="location">&nbsp;Bei mir zu hause</label>
+						<label onclick="basket.hideLocWait();" class="pure-radio nosel checked">
+							<input class="cb-fetch-point" checked="checked" type="radio" value="home" name="location" />
+							<i class="fa fa-dot-circle-o"> </i>&nbsp;Bei mir zu hause
+						</label>
 					</li>
 					
 					<li class="geoview">
-						<label onclick="basket.getPosition();" class="pure-radio nosel"><input class="cb-fetch-point" type="radio" value="loc" name="location">&nbsp;Aktueller Standort</label>
-					</li>				
-				
+						<label onclick="basket.getPosition();" class="pure-radio nosel">
+							<input class="cb-fetch-point" type="radio" value="loc" name="location" />
+							<i class="fa fa-circle-o"> </i>&nbsp;Aktueller Standort
+						</label>
+					</li>	
 				</ul>
 			</div>
+	        
+	       
+			
 	        <input id="latitude" type="hidden" name="latitude" value="" />
 	        <input id="longitude" type="hidden" name="longitude" value="" />
 	        <input id="photo" type="hidden" name="photo" value="" />
@@ -277,16 +299,9 @@
 	    </fieldset>
 	</form>
 	<div class="pageContent">
-		<div class="pure-form pure-form-stacked">
-		<fieldset>
-	        <legend>Essenkorb anfragen</legend>
-	        <div class="pure-menu pure-menu-open pure-menu-horizontal">
-			    <ul class="fill" id="requestBody">
-			    
-			    </ul>
-		    </div>
-	    </fieldset>
-		</div>
+		<ul id="requestBody" class="contacts">
+			
+		</ul>
 	</div>
   </div>
   
@@ -297,7 +312,7 @@
   -->
   	<div id="page-chat" class="page">  
   		
-  		<ul id="conversation">
+  		<ul id="conversation" class="contacts">
   			<li>
   				<span class="photo nopic"><img src="img/med_q_avatar.png" /></span>
   				<span class="text">
@@ -343,8 +358,8 @@
 	        <legend>Login - lebensmittelretten.de</legend>
 	
 			<p>
-		        <input class="fill" id="email" type="email" placeholder="Deine E-Mail Adresse" value="">
-		        <input class="fill" id="password" type="password" placeholder="Dein Password" value="">
+		        <input class="fill" id="email" type="email" placeholder="Deine E-Mail Adresse" value="raphi@waldorfweb.net">
+		        <input class="fill" id="password" type="password" placeholder="Dein Password" value="passwort123">
 	 		</p>
 	 		<p>
 	       		<button id="savesettings" class="corner fill pure-button pure-button-primary">Speichern</button>

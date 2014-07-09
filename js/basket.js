@@ -18,8 +18,11 @@ var basket = {
 	{
 		$('#image-preview').css('display','none');
 		$('#description').val('');
-		$('#page-foodbasket input[type=\'checkbox\']').each(function(){
-			this.checked = false;
+		$('#page-foodbasket label.checkbox').each(function(){
+			$this = $(this);
+			$this.children('input')[0].checked = false;
+			$this.removeClass('checked');
+			$this.children('i').removeClass('fa-check-square-o').addClass('fa-square-o');
 		});
 		window.scrollTo(0, 0);
 	},
@@ -34,10 +37,11 @@ var basket = {
 			});
 			
 			var food_art = new Array();
-			$('.cb-food_art:checked').each(function(){
-				food_art[food_art.length] = $(this).val();
-			});
-			
+			value = $('#food-art').val();
+			if(value != 0)
+			{
+				food_art[0] = value;
+			}
 			var contact_type = new Array();
 			$('.cb-contact_type:checked').each(function(){
 				contact_type[contact_type.length] = $(this).val();
@@ -50,6 +54,13 @@ var basket = {
 			}
 			
 			loader.show();
+			/*
+			alert('food_art:'+print_r(food_art));
+			alert('food_types:'+print_r(food_types));
+			alert('contact:'+print_r(contact_type));
+			alert('latLng' + $('#latitude').val() + ':' + $('#longitude').val());
+			alert('fetch_art' + $('.cb-fetch-point:checked').val());
+			*/
 			a.req('basket_submit',{
 				data: {
 					desc: $('#description').val(),
@@ -256,13 +267,26 @@ var basket = {
 					for(i=0;i<ret.requests.length;i++)
 					{
 						r = ret.requests[i];
-						$('#requestBody').append('<li class="fill"><a href="http://lebensmittelretten.de/freiwillige/?page=message&conv=' + r.fs_id + '" target="_blank"><img class="corner" src="' + r.fs_photo + '" /></span><span class="pure-menu-heading">Anfrage von ' + r.fs_name + '</span><span class="time">' + r.time + '</span><span class="text">' + r.text + '</span><span class="clear"></span></a></li>');
+						
+						$('#requestBody').append(
+						'<li onclick="chat.load(' + r.fs_id + ');">' +
+	  						'<span class="photo"><img class="corner" src="' + r.fs_photo + '" /></span>' +
+	  						'<span class="text">' +
+	  							'<span class="msg">Anfrage von ' + r.fs_name + '<br />' + r.text + '</span>' +
+	  							'<span class="info">' + r.time + '</span>' +
+	  						'</span>' +
+	  						'<span class="clear"></span>' +
+  						'</li>');
+  						
 					}
 				}
 				else
 				{
 					$('#requestBody').append('<li class="pure-menu-heading">Zur Zeit keine Anfragen..</li>');
 				}
+				
+			},
+			error: function(){
 				
 			}
 		});
