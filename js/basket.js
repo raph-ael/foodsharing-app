@@ -1,4 +1,12 @@
 var basket = {
+	init: function(){
+		$('#hidelocwait').bind('touchstart',function(){
+			basket.hideLocWait();
+		});
+		$('#basketgetposition').bind('touchstart',function(){
+			basket.getPosition();
+		});
+	},
 	hideLocWait: function(){
 		$('#basketSubmitWait').hide();
 		$('#basketSubmit').show();
@@ -269,11 +277,11 @@ var basket = {
 						r = ret.requests[i];
 						
 						$('#requestBody').append(
-						'<li onclick="chat.load(' + r.fs_id + ');">' +
-	  						'<span class="photo"><img class="corner" src="' + r.fs_photo + '" /></span>' +
+						'<li onclick="chat.load(' + r.id + ');">' +
+	  						'<span class="photo"><img class="corner" src="' + u.avatar(r.p,50) + '" /></span>' +
 	  						'<span class="text">' +
-	  							'<span class="msg">Anfrage von ' + r.fs_name + '<br />' + r.text + '</span>' +
-	  							'<span class="info">' + r.time + '</span>' +
+	  							'<span class="msg">Anfrage von ' + r.n + '<br />' + r.m + '</span>' +
+	  							'<span class="info">' + r.t + '</span>' +
 	  						'</span>' +
 	  						'<span class="clear"></span>' +
   						'</li>');

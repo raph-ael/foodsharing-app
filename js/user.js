@@ -9,6 +9,16 @@ var u = {
 		}
 		return false;
 	},
+	avatar: function(photo,size){
+		if(photo == '')
+		{
+			return 'img/med_q_avatar.png';
+		}
+		else
+		{
+			return c.protocol + c.domain + '/freiwillige/images/' + size + '_q_' + photo;
+		}
+	},
 	checkLogin: function(){
 		a.req('checklogin');
 	},
@@ -31,7 +41,6 @@ var u = {
 	relogin: function(method,options){
 		u.login({
 			success: function(){
-				alert(method);
 				a.req(method,options);
 			}
 		});
@@ -54,17 +63,19 @@ var u = {
 			
 			loader.miniShow();
 	
+			var password = $('#password').val();
+			var email = $('#email').val();
 			a.req('login',{
 				data:{
-					e:$('#email').val(),
-					p:$('#password').val(),
+					e:email,
+					p:password,
 					g:c.pushgcm
 				},
 				success: function(json)
 				{
 					u.loggedIn = true;
-					store.set('lmr-email',json.e);
-					store.set('lmr-pass',json.p);
+					store.set('lmr-email',email);
+					store.set('lmr-pass',password);
 					store.set('lmr-token',json.token);
 					store.set('fs-id',json.id);
 					store.set('fs-phone',json.phone);
@@ -104,6 +115,7 @@ var u = {
 					else
 					{
 						page.activate('foodbasket');
+						//chat.load(56);
 					}
 					loader.miniHide();
 					

@@ -47,6 +47,7 @@ $(document).ready(function(){
 	init.login_data();
 	
 	loader.miniHide();
+	basket.init();
 	
 	// map bugfix while resizing
 	$(window).resize(function(){

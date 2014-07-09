@@ -1,5 +1,6 @@
 var c = {
 	domain: 'www.lebensmittelretten.de',
+	protocol: 'http://',
 	//domain: 'lmr.local',
 	backpage: 'map',
 	currentpage: 'map',

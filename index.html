@@ -254,14 +254,13 @@
 			<div style="display:none;" id="cb-location" class="corner cbmenu pure-menu pure-menu-open">
 				<ul>
 					<li class="geoview">
-						<label onclick="basket.hideLocWait();" class="pure-radio nosel checked">
+						<label id="hidelocwait" class="pure-radio nosel checked">
 							<input class="cb-fetch-point" checked="checked" type="radio" value="home" name="location" />
 							<i class="fa fa-dot-circle-o"> </i>&nbsp;Bei mir zu hause
 						</label>
 					</li>
-					
 					<li class="geoview">
-						<label onclick="basket.getPosition();" class="pure-radio nosel">
+						<label id="basketgetposition" class="pure-radio nosel">
 							<input class="cb-fetch-point" type="radio" value="loc" name="location" />
 							<i class="fa fa-circle-o"> </i>&nbsp;Aktueller Standort
 						</label>
@@ -313,37 +312,14 @@
   	<div id="page-chat" class="page">  
   		
   		<ul id="conversation" class="contacts">
-  			<li>
-  				<span class="photo nopic"><img src="img/med_q_avatar.png" /></span>
-  				<span class="text">
-  					<span class="msg">Hallo Welt</span>
-  					<span class="info">Peter - 3. Juli 18.52 Uhr</span>
-  				</span>
-  				<span class="clear"></span>
-  			</li>
-  			<li>
-  				<span class="photo nopic"><img src="img/med_q_avatar.png" /></span>
-  				<span class="text">
-  					<span class="msg">Hallo Welt</span>
-  					<span class="info">Peter - 3. Juli 18.52 Uhr</span>
-  				</span>
-  				<span class="clear"></span>
-  			</li>
-  			<li>
-  				<span class="photo nopic"><img src="img/med_q_avatar.png" /></span>
-  				<span class="text">
-  					<span class="msg">Hallo Welt</span>
-  					<span class="info">Peter - 3. Juli 18.52 Uhr</span>
-  				</span>
-  				<span class="clear"></span>
-  			</li>
+  			
   		</ul>
   		
   		<div class="footer">
 			<table style="width:100%">
 			   	<tr id="msg-control">
-			   		<td style="padding-right:20px;"><input type="text" class="fill" name="msg" placeholder="Schreibe etwas..." /></td>
-			   		<td style="width:103px;text-align:right;"><button type="submit" class="pure-button pure-button-primary">Senden</button></td>
+			   		<td style="padding-right:20px;"><input id="chat-msg" type="text" class="fill" name="msg" placeholder="Schreibe etwas..." /></td>
+			   		<td style="width:103px;text-align:right;"><button onclick="chat.submit();" type="submit" class="pure-button pure-button-primary">Senden</button></td>
 			 	</tr>
 			</table>			
   		</div>
@@ -358,8 +334,8 @@
 	        <legend>Login - lebensmittelretten.de</legend>
 	
 			<p>
-		        <input class="fill" id="email" type="email" placeholder="Deine E-Mail Adresse" value="raphi@waldorfweb.net">
-		        <input class="fill" id="password" type="password" placeholder="Dein Password" value="passwort123">
+		        <input class="fill" id="email" type="email" placeholder="Deine E-Mail Adresse" value="">
+		        <input class="fill" id="password" type="password" placeholder="Dein Password" value="">
 	 		</p>
 	 		<p>
 	       		<button id="savesettings" class="corner fill pure-button pure-button-primary">Speichern</button>
