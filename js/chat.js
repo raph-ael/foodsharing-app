@@ -4,6 +4,10 @@ var chat = {
 	activeName: null,
 	init: function(){
 		
+		$('#msg-form').submit(function(ev){
+			ev.preventDefault();
+			chat.submit();
+		});
 		
 	},
 	load: function(id){
@@ -14,11 +18,18 @@ var chat = {
 		chat.loadHistory();
 	},
 	submit: function(){
-		msg = $('#chat-msg').val();
-		if(parseInt(this.activeId) > 0 && msg != '')
+		$msg = $('#chat-msg');
+		if(parseInt(this.activeId) > 0 && $msg.val() != '')
 		{
+			alert($msg.val());
 			
+			$msg.val('');
+			$msg[0].focus();
 		}
+	},
+	showLoader: function(){
+		$conv = $('#conversation');
+		$conv.append('<li class="loader"></li>');
 	},
 	loadHistory: function(){
 		loader.miniShow();

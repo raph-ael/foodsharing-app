@@ -48,6 +48,7 @@ $(document).ready(function(){
 	
 	loader.miniHide();
 	basket.init();
+	chat.init();
 	
 	// map bugfix while resizing
 	$(window).resize(function(){
