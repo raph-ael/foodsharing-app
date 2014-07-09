@@ -98,7 +98,7 @@ function setIosToken()
 
 function onNotificationAPN (event) {
 	
-	alert(event);
+	alert(dump(event));
 	
     if ( event.alert )
     {
