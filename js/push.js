@@ -59,7 +59,7 @@ var push = {
    foreground: function(e)
    {
    		//alert(dump());
-   		switch(e.payload.type)
+   		switch(e.type)
    		{
    			case 'msg' :
    				chat.getPush(e);
@@ -100,7 +100,12 @@ function setIosToken()
 
 function onNotificationAPN (event) {
 	
-	alert(dump(event));
+	//alert(dump(event));
+	
+	if(event.foreground)
+	{
+		push.foreground(event);
+	}
 	
     if ( event.alert )
     {
@@ -139,7 +144,7 @@ function onNotificationGCM(e) {
         // you might want to play a sound to get the user's attention, throw up a dialog, etc.
         if ( e.foreground )
         {
-        	push.foreground(e);
+        	push.foreground(e.payload);
             //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 			
             // if the notification contains a soundname, play it.
