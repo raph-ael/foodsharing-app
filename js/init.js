@@ -15,7 +15,8 @@ var init = {
 	},
 	cambutton: function()
 	{
-		$('#cambutton').bind('touchend',function(ev){
+		$('#cambutton').unbind('click');
+		$('#cambutton').bind('click',function(ev){
 			ev.preventDefault();
 			
 			capturePhoto();

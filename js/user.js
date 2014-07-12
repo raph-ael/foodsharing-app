@@ -118,8 +118,8 @@ var u = {
 					}
 					else
 					{
-						//page.activate('map');
-						chat.chat(56);
+						page.activate('map');
+						//chat.chat(56);
 					}
 					loader.miniHide();
 					

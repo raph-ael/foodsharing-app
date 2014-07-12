@@ -1,7 +1,6 @@
 var page = {
 	activate: function(name,options)
 	{		
-		
 		if(options == undefined)
 		{
 			options = {};
@@ -38,6 +37,7 @@ var page = {
 		{
 			options.complete();
 		}
+		t.scrollTop();
 		
 	},
 	setFootMenu: function(index){	

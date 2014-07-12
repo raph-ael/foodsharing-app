@@ -38,6 +38,9 @@ var t = {
 	scrollBottom: function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 500);
 	},
+	scrollTop: function(){
+		window.scrollTo(0, 0);
+	},
 	number_format: function(number, decimals, dec_point, thousands_sep) {
 
 

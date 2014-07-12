@@ -1,4 +1,6 @@
 var lang = new Array ();
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value 
 
 init.location_counter = 0;
 
@@ -23,6 +25,9 @@ document.addEventListener('deviceready',function(){
     	c.splashVisible = false;
         navigator.splashscreen.hide();
     }
+    
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = navigator.camera.DestinationType;
 	
 },false);
 

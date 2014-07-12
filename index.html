@@ -103,8 +103,8 @@
 				</a>
 
   				<a onclick="basket.showRequests();return false;" style="float:left;width:50%;margin:0;padding:8px 0;" href="#requests" class="page-requests pure-button pure-button-active">
-				    <i class="fa fa-child"></i><br />
-				    Anfragen
+				    <i class="fa fa-envelope"></i><br />
+				    Nachrichten
 				</a>
   				
 				<div style="clear:both;"></div>
@@ -163,8 +163,8 @@
 				<button id="cambutton" class="corner button-xlarge pure-button button-green"><i class="fa fa-camera fa-2x"></i></button>
 			</p>
 			
-			<div id="image-preview" class="corner" style="display:none;max-height: 80px;overflow:hidden;">
-				<img width="100%" style="display:none;" id="largeImage" src="" />
+			<div id="image-preview" class="corner" style="display:none;overflow:hidden;">
+				<img class="corner" width="100%" style="display:none;" id="largeImage" src="" />
 			</div>
   			
 			
@@ -279,6 +279,7 @@
 			<p>
 	        	<button style="font-weight:normal;padding:15px 0;" id="basketSubmit" class="fill corner pure-button pure-button-primary">Absenden</button>
 	        	<button style="font-weight:normal;padding:15px 0;display:none;" id="basketSubmitWait" class="fill corner pure-button pure-button-disabled">Warte auf Standort..</button>
+	        	<button style="font-weight:normal;padding:15px 0;display:none;" id="basketPhotoWait" class="fill corner pure-button pure-button-disabled">Warte auf Foto-Upload..</button>
 	        </p>
 	    </fieldset>
 	</form>
@@ -296,13 +297,11 @@
   <div id="page-requests" class="page">  	
   	<form class="pageloader pure-form pure-form-stacked">
 	    <fieldset>
-	        <legend>Lade Anfragen...</legend>
+	        <legend>Lade Nachrichten...</legend>
 	    </fieldset>
 	</form>
 	<div class="pageContent">
-		<ul id="requestBody" class="contacts">
-			
-		</ul>
+		<ul id="requestBody" class="contacts"></ul>
 	</div>
   </div>
   

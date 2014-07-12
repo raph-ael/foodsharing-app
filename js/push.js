@@ -230,8 +230,11 @@ function onNotificationGCM(e) {
            }
            else
            {
-           		page.activate('chat');
-		        chat.getPush(e.payload.d.i,e.payload.message,e.payload.d.c);
+           		chat.chat(e.payload.d.i,{
+           			success: function(){
+           				chat.getPush(e.payload.d.i,e.payload.message,e.payload.d.c);
+           			}
+           		});
            }
         }
 

@@ -329,11 +329,16 @@ ul.contacts li span
 ul.contacts li span.photo
 {
 	float:left;
-	margin-right:8px;
+	width:55px;
+	margin:2px 0 0 2px;
+}
+ul.contacts li span.photo img
+{
+	border-radius:4px;
 }
 ul.contacts li span.text
 {
-	float:left;
+	margin-left:60px;
 	color:#665343;
 	font-size:13px;
 }
@@ -357,8 +362,4 @@ ul.contacts li span.clear
 .checkbox.checked
 {
 	font-weight:bold;
-}
-
-*{
--webkit-backface-visibility: hidden;
 }

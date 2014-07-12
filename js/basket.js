@@ -7,6 +7,7 @@ var basket = {
 			basket.getPosition();
 		});
 	},
+	clearTimeout : null,
 	hideLocWait: function(){
 		$('#basketSubmitWait').hide();
 		$('#basketSubmit').show();
@@ -264,40 +265,56 @@ var basket = {
 	{
 		page.activate('requests');
 		
-		a.req('loadrequests',{
-			success: function(ret){
-				loader.pageHide();
+		if($('#requestBody li').length == 0)
+		{
+			a.req('loadrequests',{
+				success: function(ret){
 				
-				$('#requestBody').html('');
-				
-				if(ret.requests != undefined && ret.requests.length > 0)
-				{
-					for(i=0;i<ret.requests.length;i++)
+					if(basket.clearTimeout !== null)
 					{
-						r = ret.requests[i];
-						
-						$('#requestBody').append(
-						'<li onclick="chat.chat(' + r.id + ');">' +
-	  						'<span class="photo"><img class="corner" src="' + u.avatar(r.p,50) + '" /></span>' +
-	  						'<span class="text">' +
-	  							'<span class="msg">Nachrichten von ' + r.n + '<br />' + r.m + '</span>' +
-	  							'<span class="info">' + r.t + '</span>' +
-	  						'</span>' +
-	  						'<span class="clear"></span>' +
-  						'</li>');
-  						
+						clearTimeout(basket.clearTimeout);
 					}
-					$('body').scrollTop( 300 );
-				}
-				else
-				{
-					$('#requestBody').append('<li class="pure-menu-heading">Zur Zeit keine Anfragen..</li>');
-				}
 				
-			},
-			error: function(){
-				
-			}
-		});
+					loader.pageHide();
+					
+					basket.clearTimeout = setTimeout(function(){
+						if(c.currentpage != 'requests')
+						{
+							$('#requestBody').html('');
+						}
+					},3600000);
+					
+					$('#requestBody').html('');
+					
+					if(ret.requests != undefined && ret.requests.length > 0)
+					{
+						for(i=0;i<ret.requests.length;i++)
+						{
+							r = ret.requests[i];
+							
+							$('#requestBody').append(
+							'<li onclick="chat.chat(' + r.id + ');">' +
+		  						'<span class="photo"><img src="' + u.avatar(r.p,50) + '" /></span>' +
+		  						'<span class="text">' +
+		  							'<span class="msg">Nachrichten von ' + r.n + '<br />' + r.m + '</span>' +
+		  							'<span class="info">' + r.t + '</span>' +
+		  						'</span>' +
+		  						'<span class="clear"></span>' +
+	  						'</li>');
+	  						
+						}
+						t.scrollTop();
+					}
+					else
+					{
+						$('#requestBody').append('<li class="pure-menu-heading">Zur Zeit keine Anfragen..</li>');
+					}
+					
+				},
+				error: function(){
+					
+				}
+			});
+		}
 	}
 };

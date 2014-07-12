@@ -22,8 +22,9 @@ var chat = {
 		}
 		return false;
 	},
-	chat: function(id){
-		this.load(id);
+	chat: function(id,option){
+		$('#conversation').html('');
+		this.load(id,option);
 		page.activate('chat');
 	},
 	deleteHistory: function(id){
@@ -49,7 +50,7 @@ var chat = {
 			this.showLoader();
 			
 			$msg.val('');
-			$msg.focus();
+			//$msg.focus();
 			a.req('sendmsg',{
 				data: {
 					ms: message,
