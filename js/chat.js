@@ -2,7 +2,10 @@ var chat = {
 	activeId: 0,
 	activePhoto: null,
 	activeName: null,
+	history: null,
 	init: function(){
+		
+		this.history = new Array();
 		
 		$('#msg-form').submit(function(ev){
 			ev.preventDefault();
@@ -10,39 +13,90 @@ var chat = {
 		});
 		
 	},
-	load: function(id){
-		loader.show();
+	isActive: function(id)
+	{
+		//alert(c.currentpage+':'+this.activeId+'=>'+id);
+		if(c.currentpage == 'chat' && this.activeId == id)
+		{
+			return true;
+		}
+		return false;
+	},
+	chat: function(id){
+		this.load(id);
+		page.activate('chat');
+	},
+	deleteHistory: function(id){
+		this.history.splice(id, 1);
+	},
+	load: function(id,option){
+		
+		if(option == undefined)
+		{
+			option = {};
+		}
 		
 		this.activeId = parseInt(id);
 		
-		chat.loadHistory();
+		this.loadHistory(option);
 	},
 	submit: function(){
-		$msg = $('#chat-msg');
-		message = $msg.val();
+		var $msg = $('#chat-msg');
+		var message = $msg.val();
 		if(parseInt(this.activeId) > 0 && message != '')
 		{
 			//alert($msg.val());
 			this.showLoader();
+			
 			$msg.val('');
+			$msg.focus();
 			a.req('sendmsg',{
 				data: {
-					m: message,
+					ms: message,
 					id: chat.activeId
 				},
-				success: function(){
+				success: function(ret){
 					chat.hideLoader();
+					loader.miniHide();
+					chat.history[parseInt(ret.id)].history[chat.history[parseInt(ret.id)].history.length] = {
+						m: ret.msg,
+						p:store.get('fs-photo'),
+						n:store.get('fs-name'),
+						t:t.dateTime(ret.time)
+					};
+					$('#conversation').append(chat.tpl({
+						m:message,
+						p:store.get('fs-photo'),
+						n:store.get('fs-name'),
+						t:t.dateTime(ret.time)
+					}));
+					
 				}
 			});
 			
 			
 		}
 	},
-	getPush: function(id,message)
+	/*
+	 * Appends a new pushed Message to History Object and display
+	 */
+	getPush: function(id,message,time)
 	{
-		alert(id+'=>'+message);
-		msg = {m:message};
-		$('#conversation').append(this.tpl(msg));
+		//alert('getPush');
+		// Chat Nachricht anhängen
+		this.history[this.activeId].history[this.history[this.activeId].history.length] = {
+			m: message,
+			p:this.history[parseInt(id)].user.photo,
+			n:this.history[parseInt(id)].user.name,
+			t:t.dateTime(time)
+		};
+		$('#conversation').append(this.tpl({
+			m:message,
+			p:this.history[parseInt(id)].user.photo,
+			n:this.history[parseInt(id)].user.name,
+			t:t.dateTime(time)
+		}));
+		
 		this.bottomScroll();
 		
 	},
@@ -54,26 +108,61 @@ var chat = {
 		$('#chat-loader').hide();
 	},
 	bottomScroll: function(){
-		window.scrollTo(0, document.body.scrollHeight);
+		t.scrollBottom();
 	},
-	loadHistory: function(){
-		loader.miniShow();
-		a.req('chathistory',{
-			data: {id:chat.activeId},
-			success: function(ret){
-				ret.history.reverse();
-				$conv = $('#conversation');
-				for(i=0;i<ret.history.length;i++)
-				{
-					m = ret.history[i];
-					$conv.append(chat.tpl(m));
-				}
-				
-				page.activate('chat');
-				chat.bottomScroll();
-				loader.hide();
+	saveHistory: function(ret){
+		this.history[ret.user.id] = {
+			user: ret.user,
+			history: ret.history
+		};
+	},
+	loadHistory: function(option){
+		
+		if(option == undefined)
+		{
+			option = {};
+		}
+	
+		if(this.history[this.activeId] != undefined)
+		{
+			chat.fillChat(this.history[this.activeId].history);
+			if(option.success != undefined)
+			{
+				option.success();
 			}
-		});
+		}
+		else
+		{
+			loader.show();
+			loader.miniShow();
+			a.req('chathistory',{
+				data: {id:chat.activeId},
+				success: function(ret){
+					ret.history.reverse();
+					chat.saveHistory(ret);
+					chat.fillChat(ret.history);
+					chat.bottomScroll();
+					
+					if(option.success != undefined)
+					{
+						option.success();
+					}
+					
+					loader.hide();
+				}
+			});
+		}
+	},
+	fillChat: function(history)
+	{
+		$conv = $('#conversation');
+		$conv.html('');
+		for(i=0;i<history.length;i++)
+		{
+			m = history[i];
+			m.t = t.dateTime(m.t);
+			$conv.append(chat.tpl(m));
+		}
 	},
 	tpl: function(m)
 	{

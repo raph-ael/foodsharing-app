@@ -358,3 +358,7 @@ ul.contacts li span.clear
 {
 	font-weight:bold;
 }
+
+*{
+-webkit-backface-visibility: hidden;
+}

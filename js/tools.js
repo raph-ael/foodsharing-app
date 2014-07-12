@@ -17,6 +17,27 @@ var t = {
 	number: function(num){
 		return this.number_format(num,1,',','.');
 	},
+	/*
+	 * get nice formatted date and time from php timestamp (seconds)
+	 */
+	dateTime: function(timestamp)
+	{
+		months = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+		date = new Date(parseInt(timestamp)*1000);
+		//alert('date:'+date);
+		return date.getDate() + '. ' + months[date.getMonth() - 1] + ' ' + date.getHours() + ':' + date.getMinutes() + ' Uhr';
+	},
+	serialize: function(obj)
+	{
+		return JSON.stringify(obj);
+	},
+	unserialize: function(str)
+	{
+		return JSON.parse(str);
+	},
+	scrollBottom: function(){
+		$('html, body').animate({scrollTop:$(document).height()}, 500);
+	},
 	number_format: function(number, decimals, dec_point, thousands_sep) {
 
 

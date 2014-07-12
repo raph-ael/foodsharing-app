@@ -39,11 +39,15 @@ var u = {
 		});
 	},
 	relogin: function(method,options){
-		u.login({
-			success: function(){
-				a.req(method,options);
-			}
-		});
+		if(this.hasLogin())
+		{
+			u.login({
+				success: function(){
+					a.req(method,options);
+				}
+			});
+		}
+		
 	},
 	login: function(option){
 		
@@ -60,6 +64,7 @@ var u = {
 			store.del('lmr-email');
 			store.del('lmr-pass');
 			store.del('lmr-token');
+			store.del('fs-photo');
 			
 			loader.miniShow();
 	
@@ -81,13 +86,12 @@ var u = {
 					store.set('fs-phone',json.phone);
 					store.set('fs-gender',json.gender);
 					store.set('fs-name',json.name);
-					
+					store.set('fs-photo',json.photo);
 					store.set('fs-lat',json.lat);
 					store.set('fs-lon',json.lon);
 					
 					c.lat = json.lat;
 					c.lon = json.lon;
-
 					/*
 					$('#phone').val(json.phone);
 					$('#phone_mobile').val(json.phone_mobile);
@@ -114,8 +118,8 @@ var u = {
 					}
 					else
 					{
-						//page.activate('foodbasket');
-						chat.load(56);
+						//page.activate('map');
+						chat.chat(56);
 					}
 					loader.miniHide();
 					
@@ -126,6 +130,14 @@ var u = {
 				}
 			});
 		}
+	},
+	hasLogin: function()
+	{
+		if(store.isset('fs-email') && store.isset('fs-pass'))
+		{
+			return true;
+		}
+		return false;
 	}
 };
 

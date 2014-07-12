@@ -1,5 +1,4 @@
 var page = {
-	
 	activate: function(name,options)
 	{		
 		

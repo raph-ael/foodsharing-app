@@ -16,7 +16,7 @@ document.addEventListener('deviceready',function(){
 	
 	init.hardwareButtons();
 	
-	cache.init();
+	//cache.init();
 	
 	if(c.splashVisible)
     {
@@ -52,7 +52,7 @@ $(document).ready(function(){
 	
 	// map bugfix while resizing
 	$(window).resize(function(){
-		if(map.map !== null)
+		if(map.map !== null && c.currentpage == 'map')
 		{
 			map.map.invalidateSize(false);
 		}

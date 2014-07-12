@@ -277,16 +277,17 @@ var basket = {
 						r = ret.requests[i];
 						
 						$('#requestBody').append(
-						'<li onclick="chat.load(' + r.id + ');">' +
+						'<li onclick="chat.chat(' + r.id + ');">' +
 	  						'<span class="photo"><img class="corner" src="' + u.avatar(r.p,50) + '" /></span>' +
 	  						'<span class="text">' +
-	  							'<span class="msg">Anfrage von ' + r.n + '<br />' + r.m + '</span>' +
+	  							'<span class="msg">Nachrichten von ' + r.n + '<br />' + r.m + '</span>' +
 	  							'<span class="info">' + r.t + '</span>' +
 	  						'</span>' +
 	  						'<span class="clear"></span>' +
   						'</li>');
   						
 					}
+					$('body').scrollTop( 300 );
 				}
 				else
 				{

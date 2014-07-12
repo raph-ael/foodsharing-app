@@ -10,5 +10,13 @@ var store = {
 	},
 	get: function(key){
 		return this.storage.get(key);
+	},
+	isset: function(key)
+	{
+		if(this.get(key) === null)
+		{
+			return false;
+		}
+		return true;
 	}
 };
