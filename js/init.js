@@ -4,7 +4,7 @@ var init = {
 	footer: function()
 	{
 		
-		$('#menu a.pagelink').bind('touchstart',function(){
+		$('#menu a.pagelink').bind('touchend',function(){
 			index = this.href.split('#')[1];
 			page.activate(index);
 		});
