@@ -168,7 +168,9 @@ function onNotificationAPN (e) {
            
          if ( e.coldstart )
          {
-           		push.coldstart(e);
+           		//push.coldstart(e);
+           		page.activate('chat');
+		        chat.getPush(e.d.i,e.message,e.d.c);
          }
          else
          {
