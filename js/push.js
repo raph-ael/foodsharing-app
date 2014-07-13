@@ -43,17 +43,20 @@ var push = {
    showMessage: function(){
    	   loader.miniHide();
    },
-   coldstart: function(e){
+   coldstart: function(){
 	  if(u.loggedIn)
 	  {
-	  		chat.getPush(e.d.i,e.message,e.d.c);
-		    page.activate('chat');
+	  		u.login({
+	  			success: function(){
+	  				page.activate('requests');
+	  			}
+	  		});
 	  }
 	  else
 	  {
 	  	  loader.miniShow();
 	      window.setTimeout(function(){
-	      	push.coldstart(e);
+	      	push.coldstart();
 	      },100);
 	  }
    },
@@ -157,7 +160,7 @@ function setIosToken()
 function onNotificationAPN (e) {
 	
 	alert(dump(e));
-	alert(dump(e.d));
+	//alert(dump(e.d));
 	
 	 if ( e.foreground )
      {
@@ -168,14 +171,15 @@ function onNotificationAPN (e) {
            
          if ( e.coldstart )
          {
-           		//push.coldstart(e);
-           		page.activate('chat');
-		        chat.getPush(e.d.i,e.message,e.d.c);
+           		push.coldstart();
          }
          else
          {
-           		page.activate('chat');
-		        chat.getPush(e.d.i,e.message,e.d.c);
+           		chat.chat(e.d.i,{
+           			success: function(){
+           				chat.getPush(e.d.i,e.message,e.d.c);
+           			}
+           		});
          }
     }
 	
@@ -228,7 +232,8 @@ function onNotificationGCM(e) {
            
            if ( e.coldstart )
            {
-           		push.coldstart(e.payload);
+           		// hmm läuft (noch nicht so wie gepant!)
+           		push.coldstart();
            }
            else
            {

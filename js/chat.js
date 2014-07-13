@@ -26,6 +26,7 @@ var chat = {
 		$('#conversation').html('');
 		this.load(id,option);
 		page.activate('chat');
+		t.scrollBottom();
 	},
 	deleteHistory: function(id){
 		this.history.splice(id, 1);

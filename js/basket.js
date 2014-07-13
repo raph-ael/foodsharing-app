@@ -294,7 +294,7 @@ var basket = {
 							
 							$('#requestBody').append(
 							'<li onclick="chat.chat(' + r.id + ');">' +
-		  						'<span class="photo"><img src="' + u.avatar(r.p,50) + '" /></span>' +
+		  						'<span class="photo"><img width="50" height="50" src="' + u.avatar(r.p,50) + '" /></span>' +
 		  						'<span class="text">' +
 		  							'<span class="msg">Nachrichten von ' + r.n + '<br />' + r.m + '</span>' +
 		  							'<span class="info">' + r.t + '</span>' +
