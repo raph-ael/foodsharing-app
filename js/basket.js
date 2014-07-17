@@ -267,6 +267,7 @@ var basket = {
 		
 		if($('#requestBody li').length == 0)
 		{
+			loader.miniShow();
 			a.req('loadrequests',{
 				success: function(ret){
 				

@@ -6,7 +6,6 @@ var chat = {
 	init: function(){
 		
 		this.history = new Array();
-		
 		$('#msg-form').submit(function(ev){
 			ev.preventDefault();
 			chat.submit();
@@ -23,7 +22,9 @@ var chat = {
 		return false;
 	},
 	chat: function(id,option){
+		//alert(id);
 		$('#conversation').html('');
+		this.activeId = parseInt(id);
 		this.load(id,option);
 		page.activate('chat');
 		t.scrollBottom();
@@ -32,13 +33,11 @@ var chat = {
 		this.history.splice(id, 1);
 	},
 	load: function(id,option){
-		
+		this.activeId = parseInt(id);
 		if(option == undefined)
 		{
 			option = {};
 		}
-		
-		this.activeId = parseInt(id);
 		
 		this.loadHistory(option);
 	},
@@ -52,6 +51,8 @@ var chat = {
 			
 			$msg.val('');
 			//$msg.focus();
+			//alert(chat.activeId);
+			//alert(message);
 			a.req('sendmsg',{
 				data: {
 					ms: message,
@@ -64,13 +65,13 @@ var chat = {
 						m: ret.msg,
 						p:store.get('fs-photo'),
 						n:store.get('fs-name'),
-						t:t.dateTime(ret.time)
+						t:ret.time
 					};
 					$('#conversation').append(chat.tpl({
 						m:message,
 						p:store.get('fs-photo'),
 						n:store.get('fs-name'),
-						t:t.dateTime(ret.time)
+						t:ret.time
 					}));
 					
 				}
@@ -84,19 +85,20 @@ var chat = {
 	 */
 	getPush: function(id,message,time)
 	{
-		//alert('getPush');
+		id = parseInt(id);
+		//alert('getPush ' + id);
 		// Chat Nachricht anhängen
-		this.history[this.activeId].history[this.history[this.activeId].history.length] = {
+		this.history[id].history[this.history[id].history.length] = {
 			m: message,
 			p:this.history[parseInt(id)].user.photo,
 			n:this.history[parseInt(id)].user.name,
-			t:t.dateTime(time)
+			t:time
 		};
 		$('#conversation').append(this.tpl({
 			m:message,
 			p:this.history[parseInt(id)].user.photo,
 			n:this.history[parseInt(id)].user.name,
-			t:t.dateTime(time)
+			t:time
 		}));
 		
 		this.bottomScroll();
@@ -158,12 +160,12 @@ var chat = {
 	fillChat: function(history)
 	{
 		$conv = $('#conversation');
+		//alert(dump(history));
 		$conv.html('');
+		
 		for(i=0;i<history.length;i++)
 		{
-			m = history[i];
-			m.t = t.dateTime(m.t);
-			$conv.append(chat.tpl(m));
+			$conv.append(chat.tpl(history[i]));
 		}
 	},
 	tpl: function(m)
@@ -172,7 +174,7 @@ var chat = {
 	  				'<span class="photo nopic"><img width="50" height="50" src="' + u.avatar(m.p,50) + '" /></span>' +
 		  			'<span class="text">' +
 		  				'<span class="msg">' + m.m + '</span>' +
-		  				'<span class="info">' + m.n + ' - ' + m.t + '</span>' +
+		  				'<span class="info">' + m.n + ' - ' + t.dateTime(m.t) + '</span>' +
 		  			'</span>' +
 		  			'<span class="clear"></span>' +
 		  		'</li>';

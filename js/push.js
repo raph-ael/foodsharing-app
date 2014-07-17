@@ -48,7 +48,7 @@ var push = {
 	  {
 	  		u.login({
 	  			success: function(){
-	  				page.activate('requests');
+	  				basket.showRequests();
 	  			}
 	  		});
 	  }
@@ -57,7 +57,7 @@ var push = {
 	  	  loader.miniShow();
 	      window.setTimeout(function(){
 	      	push.coldstart();
-	      },100);
+	      },50);
 	  }
    },
    foreground: function(type,data)
@@ -159,8 +159,7 @@ function setIosToken()
 
 function onNotificationAPN (e) {
 	
-	alert(dump(e));
-	//alert(dump(e.d));
+	//alert(dump(e));
 	
 	 if ( e.foreground )
      {
@@ -204,7 +203,7 @@ function onNotificationAPN (e) {
 
 // Android
 function onNotificationGCM(e) {
-    $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+   // $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 
 	//alert(dump(e));
 

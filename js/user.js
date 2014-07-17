@@ -93,8 +93,8 @@ var u = {
 					c.lat = json.lat;
 					c.lon = json.lon;
 					/*
-					$('#phone').val(json.phone);
-					$('#phone_mobile').val(json.phone_mobile);
+						$('#phone').val(json.phone);
+						$('#phone_mobile').val(json.phone_mobile);
 					*/
 					
 					if(json.phone_mobile != '')
