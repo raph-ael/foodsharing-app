@@ -49,7 +49,7 @@
 		options.params = params;
 		options.chunkedMode = false;
 		var ft = new FileTransfer();
-		ft.upload(imageURI, 'http://' + c.domain + '/freiwillige/xhrapp.php?app=api&m=upload', uploadwin, uploadfail, options);
+		ft.upload(imageURI, 'http://' + c.domain + '/xhrapp.php?app=api&m=upload', uploadwin, uploadfail, options);
 	}
 	
 	function uploadwin(r) 

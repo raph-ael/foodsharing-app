@@ -25,7 +25,7 @@ var a = {
 		loader.miniShow();
 		
 		$.ajax({
-	        url: 'http://' + c.domain + '/freiwillige/xhrapp.php?app=' + option.app + '&m=' + method + '&format=jsonp&callback=?',
+	        url: 'http://' + c.domain + '/xhrapp.php?app=' + option.app + '&m=' + method + '&format=jsonp&callback=?',
 	        dataType: 'jsonp',
 	       	type: 'get',
 	        data: option.data,
@@ -60,7 +60,7 @@ var a = {
 		
 		/*
 		caller = $('#caller');
-		caller.attr('action','http://' + c.domain + '/freiwillige/xhrapp.php?app=api&m=' + method);
+		caller.attr('action','http://' + c.domain + '/xhrapp.php?app=api&m=' + method);
 		caller.html('');
 		
 		for (var k in option.data){
@@ -75,7 +75,7 @@ var a = {
 		/*
 		$.ajax({
 				dataType: 'json',
-				url:'http://' + c.domain + '/freiwillige/xhrapp.php?app=api&m=' + method,
+				url:'http://' + c.domain + '/xhrapp.php?app=api&m=' + method,
 				type:'post',
 				data: option.data,
 				success: function(json,status,xhr){

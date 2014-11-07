@@ -130,7 +130,7 @@ var map = {
 	},
 	markerCluster: null,
 	initMarker: function(){
-		// http://www.lebensmittelretten.de/freiwillige/xhrapp.php?app=basket&m=update&app=basket&loader=false
+		// http://www.lebensmittelretten.de/xhrapp.php?app=basket&m=update&app=basket&loader=false
 		loader.miniShow();
 		
 		a.req('allbaskets',{

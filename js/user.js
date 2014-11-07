@@ -16,7 +16,7 @@ var u = {
 		}
 		else
 		{
-			return c.protocol + c.domain + '/freiwillige/images/' + size + '_q_' + photo;
+			return c.protocol + c.domain + '/images/' + size + '_q_' + photo;
 		}
 	},
 	checkLogin: function(){
@@ -118,8 +118,9 @@ var u = {
 					}
 					else
 					{
-						page.activate('map');
+						//page.activate('map');
 						//chat.chat(56);
+						basket.showRequests();
 					}
 					loader.miniHide();
 					

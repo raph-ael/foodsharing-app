@@ -161,7 +161,7 @@ var basket = {
 				$('#page-basket aside:first').text(data.basket.description);
 				if(data.basket.picture != '')
 				{
-					$('#page-basket .picture img').attr('src','http://' + c.domain + '/freiwillige/images/basket/thumb-' + data.basket.picture);
+					$('#page-basket .picture img').attr('src','http://' + c.domain + '/images/basket/thumb-' + data.basket.picture);
 					$('#page-basket .picture').css('display','block');
 				}
 				else
