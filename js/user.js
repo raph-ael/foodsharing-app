@@ -118,9 +118,9 @@ var u = {
 					}
 					else
 					{
-						//page.activate('map');
+						page.activate('map');
 						//chat.chat(56);
-						basket.showRequests();
+						//basket.showRequests();
 					}
 					loader.miniHide();
 					
