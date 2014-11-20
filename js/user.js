@@ -19,6 +19,45 @@ var u = {
 			return c.protocol + c.domain + '/images/' + size + '_q_' + photo;
 		}
 	},
+	avataru: function(members,mid,size)
+	{
+		if(members.length == 2)
+		{
+			for(var i=0;i<members.length;i++)
+			{
+				if(parseInt(members[i].id) != parseInt(store.get('fs-id')))
+				{
+					if(members[i].photo == '')
+					{
+						return 'img/med_q_avatar.png';
+					}
+					else
+					{
+						return c.protocol + c.domain + '/images/' + size + '_q_' + members[i].photo;
+					}
+				}
+			}
+		}
+		else
+		{
+			for(var i=0;i<members.length;i++)
+			{
+				if(parseInt(members[i].id) == parseInt(mid))
+				{
+					if(members[i].photo == '')
+					{
+						return 'img/med_q_avatar.png';
+					}
+					else
+					{
+						return c.protocol + c.domain + '/images/' + size + '_q_' + members[i].photo;
+					}
+				}
+			}
+		}
+		
+		return 'img/med_q_avatar.png';
+	},
 	checkLogin: function(){
 		a.req('checklogin');
 	},

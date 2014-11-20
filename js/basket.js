@@ -271,6 +271,7 @@ var basket = {
 			a.req('loadrequests',{
 				success: function(ret){
 				
+					console.log(ret);
 					if(basket.clearTimeout !== null)
 					{
 						clearTimeout(basket.clearTimeout);
@@ -293,11 +294,13 @@ var basket = {
 						{
 							r = ret.requests[i];
 							
+							var name = chat.name(r);
+							
 							$('#requestBody').append(
 							'<li onclick="chat.chat(' + r.id + ');">' +
-		  						'<span class="photo"><img width="50" height="50" src="' + u.avatar(r.p,50) + '" /></span>' +
+		  						'<span class="photo"><img width="50" height="50" src="' + u.avataru(r.u,r.lu,50) + '" /></span>' +
 		  						'<span class="text">' +
-		  							'<span class="msg">Nachrichten von ' + r.n + '<br />' + r.m + '</span>' +
+		  							'<span class="msg"><strong>' + chat.tt(name) + '</strong><br />' + chat.tt(r.m) + '</span>' +
 		  							'<span class="info">' + r.t + '</span>' +
 		  						'</span>' +
 		  						'<span class="clear"></span>' +

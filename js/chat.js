@@ -178,5 +178,39 @@ var chat = {
 		  			'</span>' +
 		  			'<span class="clear"></span>' +
 		  		'</li>';
+	},
+	name: function(data)
+	{
+		if(data.name != undefined && data.name != '')
+		{
+			return data.name;
+		}
+		else
+		{
+			var out ='';
+			for(var i=0;i<data.u.length;i++)
+			{
+				if(store.get('fs-id') != data.u[i].id)
+				{
+					out += ', ' + data.u[i].name;
+				}
+			}
+			return out.substring(2);
+		}
+	},
+	tt: function(txt,length)
+	{
+		if(length == undefined)
+		{
+			length = 25;
+		}
+		if(txt.length > length)
+		{
+			return txt.substring(0,(length-3)) + '...';
+		}
+		else
+		{
+			return txt;
+		}
 	}
 };
