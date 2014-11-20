@@ -1,7 +1,7 @@
 var c = {
-	//domain: 'www.lebensmittelretten.de',
+	domain: 'www.lebensmittelretten.de',
 	protocol: 'http://',
-	domain: 'fs.local',
+	//domain: 'fs.local',
 	backpage: 'map',
 	currentpage: 'map',
 	lat:null,
