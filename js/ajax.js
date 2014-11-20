@@ -49,7 +49,7 @@ var a = {
 				}
 				else
 				{
-					msg.error('Die Anfragekonnte nicht bearbeitet werden');
+					//msg.error('Die Anfragekonnte nicht bearbeitet werden');
 				}
 
 				if(json.script != undefined)
