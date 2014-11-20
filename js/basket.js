@@ -270,8 +270,6 @@ var basket = {
 			loader.miniShow();
 			a.req('loadrequests',{
 				success: function(ret){
-				
-					console.log(ret);
 					if(basket.clearTimeout !== null)
 					{
 						clearTimeout(basket.clearTimeout);

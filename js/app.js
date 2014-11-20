@@ -48,6 +48,10 @@ $(document).ready(function(){
 		init.menuClick();
     });
 	
+	$('#title-wrapper').bind('click', function(ev){
+		init.menuClick();
+    });
+	
 	init.checkLogin();
 	init.login_data();
 	

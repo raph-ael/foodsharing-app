@@ -61,12 +61,14 @@ var chat = {
 				success: function(ret){
 					chat.hideLoader();
 					loader.miniHide();
+					/*
 					chat.history[parseInt(ret.id)].history[chat.history[parseInt(ret.id)].history.length] = {
 						m: ret.msg,
 						p:store.get('fs-photo'),
 						n:store.get('fs-name'),
 						t:ret.time
 					};
+					*/
 					$('#conversation').append(chat.tpl({
 						m:message,
 						p:store.get('fs-photo'),
@@ -115,10 +117,12 @@ var chat = {
 		t.scrollBottom();
 	},
 	saveHistory: function(ret){
-		this.history[ret.user.id] = {
+		
+		this.history[ret.id] = {
 			user: ret.user,
 			history: ret.history
 		};
+		
 	},
 	loadHistory: function(option){
 		

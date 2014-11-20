@@ -79,7 +79,7 @@ var push = {
    				 */
    				if(chat.isActive(data.d.i))
    				{
-   					// Wen History nocht nicht existiert laden...
+   					// Wenn History nocht nicht existiert laden...
    					if(chat.history[parseInt(data.d.i)] == undefined)
 	   				{
 	   					//alert('chat noch nicht geladen lade..');

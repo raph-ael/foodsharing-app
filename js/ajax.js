@@ -31,7 +31,6 @@ var a = {
 	        data: option.data,
 	        success: function (json) 
 	        {
-	
 	            if(option.success != undefined && json.status == 1)
 				{
 					option.success(json);
@@ -44,6 +43,14 @@ var a = {
 				{
 					option.error(json);
 				}
+				else if(option.status == 0 && option.error != undefined)
+				{
+					option.error(json);
+				}
+				else
+				{
+					msg.error('Die Anfragekonnte nicht bearbeitet werden');
+				}
 
 				if(json.script != undefined)
 				{
@@ -54,6 +61,9 @@ var a = {
 	        complete: function(){
 	        	loader.hide();
 	        	loader.miniHide();
+	        },
+	        error: function(){
+	        	msg.error('Die Anfrage konnte nciht bearbeitet werden');
 	        }
 	
 	});
